@@ -2,7 +2,9 @@
 
 = Introduction =
 
-What I did yesterday? What am I doing today?
+What I did yesterday? 
+
+What am I doing today?
 
 
 
