@@ -9,9 +9,7 @@ Add your content here.
 
 *What did you do yesterday*
 
-L. What I did yesterday- Relearning Java
-                       - Getting paperwork ready for sprint 1 end
-                       - Promote Synergy, LIKE A BOSS!
+L. What I did yesterday- Relearning Java, Getting paperwork ready for sprint 1 end, Promote Synergy, LIKE A BOSS!
 
 *What will you do Today*
 L.  What I will do Today - Still learning java
