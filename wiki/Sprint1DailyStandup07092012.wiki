@@ -7,7 +7,12 @@ Add your content here.
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+L. What I did yesterday- Relearning Java
+                       - Getting paperwork ready for sprint 1 end
+                       - Promote Synery, LIKE A BOSS!
+L.  What I will do Today - Still learning java
+                        - Recheck paperwork and redo website
+                        -Client meeting July 09
+                        - Bug professor with questions
+L.    Blockers - Home without internet access, don't have timetable on when
+                    it will be up again.
