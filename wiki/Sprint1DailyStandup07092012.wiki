@@ -7,12 +7,19 @@ Add your content here.
 
 = Details =
 
+*What did you do yesterday*
+
 L. What I did yesterday- Relearning Java
                        - Getting paperwork ready for sprint 1 end
                        - Promote Synergy, LIKE A BOSS!
+
+*What will you do Today*
 L.  What I will do Today - Still learning java
                         - Recheck paperwork and redo website
                         -Client meeting July 09
                         - Bug professor with questions
+
+*Are there any impediments in your way?*
+
 L.    Blockers - Home without internet access, don't have timetable on when
                     it will be up again.
