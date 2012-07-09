@@ -21,4 +21,16 @@ P.- relearning Java
 
 *What will you do today?*
 
+L.- Format sprintbacklog/relearn some more java.
+
+JL.- Figure out how to use svn and figure out something to start working on
+
+JS.-Need to get subversion working.
+
+M.- Finish backlog
+
+P.- learn the code and start creating things for it
+
+
+
 *Are there any impediments in your way?*
