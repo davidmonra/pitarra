@@ -11,10 +11,16 @@ This is the end of Sprint Retrospective for Sprint 1.
 
 L. We should start having more discussions during classtime.
 
+JS. Divde the game development to ensure everyone gets to participate in coding.
+
 *What should we stop doing?*
 
 L. Updating the wiki at the same time.
 
+JS. Stop coding outside SVN.
+
 *What should we continue doing?*
 
 L. Communication has been very good, we need to continue that. 
+
+JS. Planning reachable sprint goals.
