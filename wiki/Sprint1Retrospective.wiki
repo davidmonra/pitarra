@@ -13,14 +13,20 @@ L. We should start having more discussions during classtime.
 
 JS. Divde the game development to ensure everyone gets to participate in coding.
 
+MAG. Breaking down the new tasks for sprint 2.
+
 *What should we stop doing?*
 
 L. Updating the wiki at the same time.
 
 JS. Stop coding outside SVN.
 
+MAG. Again updating the wiki at the same time.
+
 *What should we continue doing?*
 
 L. Communication has been very good, we need to continue that. 
 
 JS. Planning reachable sprint goals.
+
+MAG. Keep communicating.
