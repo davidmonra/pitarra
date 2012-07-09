@@ -10,9 +10,13 @@ This is the Daily Standup for July 2.
 *What did you do yesterday?*
 
 L.- Contact with the Professors/ Still Relearning Java
+
 JS.-  Wrote basic game user interface.
+
 JL.- Relearn java...
+
 M.- I relearned java and setting up backlog.
+
 P.- relearning Java
 
 *What will you do today?*
