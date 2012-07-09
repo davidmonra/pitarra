@@ -34,3 +34,5 @@ P.- learn the code and start creating things for it
 
 
 *Are there any impediments in your way?*
+
+L.- Lack of Code.google and java knowledge. 
