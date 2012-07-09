@@ -34,3 +34,7 @@ JL.  start/finish going over sprint backlog and burn down chart blocker: dunno h
 *Are there any impediments in your way?*
 
 L.    Blockers - Home without internet access, don't have timetable on when it will be up again.
+
+M. Need to know how much time everyone spent on there work for the sprint 1 backlog.
+
+P. limited Java knowledge
