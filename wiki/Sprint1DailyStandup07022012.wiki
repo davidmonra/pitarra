@@ -1,13 +1,14 @@
-#summary One-sentence summary of this page.
+#summary Daily Standup for July 2.
 
 = Introduction =
 
-Add your content here.
+This is the Daily Standup for July 2.
 
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+*What did you do yesterday?*
+
+*What will you do today?*
+
+*Are there any impediments in your way?*
