@@ -29,7 +29,7 @@ P. polishing the game for presentation today
 
 JS. I will research on how to make an SVN project a Java project as well.
 
-JL.  start/finish going over sprint backlog and burn down chart blocker: dunno how to get repository working exactly with java to update
+JL.  start/finish going over sprint backlog and burn down chart
 
 *Are there any impediments in your way?*
 
@@ -38,3 +38,5 @@ L.    Blockers - Home without internet access, don't have timetable on when it w
 M. Need to know how much time everyone spent on there work for the sprint 1 backlog.
 
 P. limited Java knowledge
+
+JL. dunno how to get repository working exactly with java to update
