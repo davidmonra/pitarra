@@ -15,6 +15,8 @@ JS. Divde the game development to ensure everyone gets to participate in coding.
 
 MAG. Breaking down the new tasks for sprint 2.
 
+JL. Dividing the work up better.
+
 *What should we stop doing?*
 
 L. Updating the wiki at the same time.
@@ -23,6 +25,8 @@ JS. Stop coding outside SVN.
 
 MAG. Again updating the wiki at the same time.
 
+JL. Over planning.
+
 *What should we continue doing?*
 
 L. Communication has been very good, we need to continue that. 
@@ -30,3 +34,5 @@ L. Communication has been very good, we need to continue that.
 JS. Planning reachable sprint goals.
 
 MAG. Keep communicating.
+
+JL. Reaching goals we set and not going overboard with them.
