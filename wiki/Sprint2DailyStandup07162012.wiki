@@ -1,0 +1,20 @@
+#summary Sprint 2 Daily Standup (07/16/2012).
+
+= Introduction =
+
+"Yesterday" refers to all the days between today and the last class meeting. "Today" refers to all the days between today and the next class meeting.
+
+
+= Details =
+
+*What did you do yesterday?*
+
+L- Ended Sprint1, had client meeting.
+
+*What will you do today?*
+
+L-Complete Sprint2Backlog, assign coding assignments, start user manual.
+
+*Are there any impediments in your way?*
+
+L- Lack of Java knowledge. Dilbert cartoons hitting to close to home.
