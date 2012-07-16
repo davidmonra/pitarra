@@ -17,6 +17,7 @@ PHP- had a fight with Charlie Sheen. just kidding, i'm trying to figure out the 
 
 JS- Worked on algorithm for advanced game play per clients request.
 
+JL- ponder implications of new rules from the client meeting
 
 *What will you do today?*
 
@@ -28,6 +29,7 @@ PHP- implement the new mechanics
 
 JS- Plan distribution of tasks and implementation of the modifications.
 
+JL- work on assigned task, implementing sound/sound effects
 
 *Are there any impediments in your way?*
 
@@ -38,3 +40,5 @@ M- Remembering how to use eclipse properly
 PHP- the new game mechanics are quite confusing
 
 JS- Need to write a game piece drag and drop routine.
+
+JL- no, not really
