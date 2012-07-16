@@ -12,8 +12,10 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel {
         private ImageIcon backdrop;
         private PyramidPanel pyramid;
-        private ButtonPanel buttons;
+        //private ButtonPanel buttons;
+        //private Menu menu;
         private boolean isPlayer1Turn;
+        private boolean playBasicGame = true;
 
         public GamePanel(ImageIcon backdrop) {
                 super();
@@ -31,8 +33,11 @@ public class GamePanel extends JPanel {
                                 PitCons.pyramidLineColor, this);
                 add(pyramid, BorderLayout.CENTER);
 
-                buttons = new ButtonPanel(this);
-                add(buttons, BorderLayout.NORTH);
+                //buttons = new ButtonPanel(this);
+                //add(buttons, BorderLayout.NORTH);
+                
+                //menu = new Menu(this);
+                //add(menu, BorderLayout.NORTH);
         }
 
         public boolean isPlayer1Turn() {
@@ -66,5 +71,13 @@ public class GamePanel extends JPanel {
                                         this);
                 }
         }
+
+		public void setPlayBasicGame(boolean playBasicGame) {
+			this.playBasicGame = playBasicGame;
+		}
+
+		public boolean isPlayBasicGame() {
+			return playBasicGame;
+		}
 
 }
