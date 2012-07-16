@@ -15,6 +15,9 @@ M- Continue refreshing myself in java
 
 PHP- had a fight with Charlie Sheen. just kidding, i'm trying to figure out the new mechanics of the game and how to implement it.
 
+JS- Worked on algorithm for advanced game play per clients request.
+
+
 *What will you do today?*
 
 L-Complete Sprint2 Backlog, assign coding assignments, start user manual.
@@ -23,6 +26,9 @@ M-Help with backlog and start on coding assignment
 
 PHP- implement the new mechanics
 
+JS- Plan distribution of tasks and implementation of the modifications.
+
+
 *Are there any impediments in your way?*
 
 L- Lack of Java knowledge. Dilbert cartoons hitting to close to home.
@@ -30,3 +36,5 @@ L- Lack of Java knowledge. Dilbert cartoons hitting to close to home.
 M- Remembering how to use eclipse properly
 
 PHP- the new game mechanics are quite confusing
+
+JS- Need to write a game piece drag and drop routine.
