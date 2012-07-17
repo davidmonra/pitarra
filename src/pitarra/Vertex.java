@@ -7,20 +7,20 @@ import java.awt.Point;
 @SuppressWarnings("serial")
 public class Vertex extends Point {
 	private boolean isAvailable;
+	private boolean isCornerVertex;
 	private int player;
-	// private Point point; // this point
-	private Vertex left, right, above; // adjacent vertices
-	private GamePanel gPanel;
+	private Vertex left, right, above, below; // adjacent vertices
 
-	public Vertex(GamePanel panel) {
+	public Vertex(boolean isCornerVertex) {
 		super();
 		setLocation(0, 0);
 		this.isAvailable = true;
+		this.isCornerVertex = isCornerVertex;
 		this.player = 0;
 		this.left = null;
 		this.right = null;
 		this.above = null;
-		this.gPanel = panel;
+		this.below = null;
 	}
 
 	public boolean isAvailable() {
@@ -31,6 +31,10 @@ public class Vertex extends Point {
 		this.isAvailable = available;
 		if (available)
 			this.player = 0;
+	}
+
+	public boolean isCornerVertex() {
+		return isCornerVertex;
 	}
 
 	public Vertex getLeft() {
@@ -57,19 +61,21 @@ public class Vertex extends Point {
 		this.above = above;
 	}
 
+	public Vertex getBelow() {
+		return below;
+	}
+
+	public void setBelow(Vertex below) {
+		this.below = below;
+	}
+
 	public int getPlayer() {
 		return player;
 	}
 
-	public void setPlayer() {
-		if (isAvailable) { // can't change player once its been selected
-			if (gPanel.isPlayer1Turn()) {
-				this.player = 1;
-			} else {
-				this.player = 2;
-			}
-			gPanel.switchPlayer();
-		}
+	public void setPlayer(int player) {
+		if (isAvailable) // can't change player once its been selected
+			this.player = player;
 	}
 
 	public void drawConnectingLines(Graphics page, Color color) {
