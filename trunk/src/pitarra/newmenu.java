@@ -1,5 +1,9 @@
 import java.io.*;
+
+import javax.swing.JFrame;
 public class newmenu {
+    
+    
  public static void main(String args[]){
   try{
   // Open file
@@ -11,7 +15,16 @@ public class newmenu {
   // Read the file line by line
   while ((stringLine = buff.readLine()) != null)   {
   // Print the content on the console
-  System.out.println (stringLine);
+  //System.out.println (stringLine);
+      JFrame frame = new JFrame("Pitarra");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      newmenu ta = new newmenu();
+      frame.pack();
+     
+      frame.setSize(450, 600);
+      frame.setVisible(true);
+
+
   }
   //Close the input stream
   input.close();
@@ -21,4 +34,3 @@ public class newmenu {
   }
   }
 }
-
