@@ -12,14 +12,21 @@ L- Began Sprint2, had group meeting, assigned work.
 
 M- Worked on the instruction menu.
 
+JS- Implemented game play for advanced rules.
+
 *What will you do today?*
 
 L- Complete Sprint2 Backlog, start counters for java code/
 
 M- Continue working on instruction menu.
 
+
+JS- Work on moving icons / drag-and-drop for advanced rules.
+
 *Are there any impediments in your way?*
 
 L- Lack of Java knowledge. Fear of incoming end of the world.
 
 M- Still not good with java lol
+
+JS- Not sure if drag-and-drop is supported for JPanel. Need to see if there is an existing pardigm. If not implement with Mouse Press/Mouse Move/Mouse Released events.
