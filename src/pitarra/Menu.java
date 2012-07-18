@@ -17,8 +17,9 @@ public class Menu extends JMenuBar{
 	private JMenuBar menuBar;
 	private GamePanel gPanel;
 	private JMenu menuMain, menuGame;
-	private JMenuItem Exit;
-	private ActionListener alTrad, alBeg, alEx, alSound;
+	private JMenuItem Exit, Instruction;
+	//action listener for traditional game option, beginner game option, exit, sound, and instructions
+	private ActionListener alTrad, alBeg, alEx, alSound, alInstruction;
 	private JCheckBoxMenuItem sound, NewTrad, NewBeg;
 	private ButtonGroup menuGroupGame;
     
@@ -37,6 +38,7 @@ public class Menu extends JMenuBar{
     	this.NewTrad = new JCheckBoxMenuItem("New Traditional Game");
     	this.sound = new JCheckBoxMenuItem("Sound");
     	this.Exit = new JMenuItem("Exit");
+    	this.Instruction = new JMenuItem("Instruction");
     	
     	//menu grouping to make game mode mutually exclusive
     	this.menuGroupGame = new ButtonGroup();
@@ -45,11 +47,13 @@ public class Menu extends JMenuBar{
     	this.alBeg = new ButtonActionNewGameB();
     	this.alEx = new ButtonActionExit();
     	this.alSound = new ButtonActionSound();
+    	this.alInstruction = new ButtonActionInstruction();
     	
     	this.NewTrad.addActionListener(alTrad);
     	this.NewBeg.addActionListener(alBeg);
     	this.Exit.addActionListener(alEx);
     	this.sound.addActionListener(alSound);
+    	this.Instruction.addActionListener(alInstruction);
     	setMenu();
     }
     
@@ -61,13 +65,17 @@ public class Menu extends JMenuBar{
     	menuBar.add(menuMain);
     	menuBar.add(menuGame);
     	
-    	menuGroupGame.add(NewTrad);
     	menuGroupGame.add(NewBeg);
+    	menuGroupGame.setSelected(NewBeg.getModel(), true);
+    	menuGroupGame.add(NewTrad);
     	
     	menuGame.add(NewTrad);
     	menuGame.add(NewBeg);
     	menuGame.addSeparator();
     	menuGame.add(sound);
+    	menuGame.addSeparator();
+    	menuGame.add(Instruction);
+    	sound.setSelected(true);
     	
     	menuMain.add(Exit);
     }
@@ -102,7 +110,20 @@ public class Menu extends JMenuBar{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			if(gPanel.isSoundOn()){
+				gPanel.setSoundOn(false);
+			}else{
+				gPanel.setSoundOn(true);
+			}
+		}
+    }
+    
+    private class ButtonActionInstruction implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
 			
 		}
     }
+    
 }
