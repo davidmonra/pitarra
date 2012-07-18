@@ -3,6 +3,7 @@ package pitarra;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.Toolkit;
 
@@ -12,6 +13,12 @@ public final class PitCons {
 	// text strings
 	protected final static String title = "PITARRA";
 	protected final static String newGame = "New Game";
+	// Fonts
+	protected final static int fontSize = 20;
+	protected final static Font boldFont = new Font("Ariel", Font.BOLD,
+			fontSize);
+	protected final static Font normalFont = new Font("Sans Serif", Font.PLAIN,
+			fontSize);
 	// window constants
 	protected final static double windowSizeScale = .6; // % of screen width
 	protected final static double pyramidSizeScale = .5; // % of window width
@@ -21,6 +28,7 @@ public final class PitCons {
 	protected final static Color player1SquareColor = Color.red;
 	protected final static Color player2SquareColor = Color.yellow;
 	protected final static Color genericBackColor = Color.orange;
+	protected final static Color genericBorderColor = Color.black;
 	// image icons
 	// Change the .jpg image files in the icons folder to change the backdrops.
 	// Make sure the file names are the same.
@@ -33,8 +41,8 @@ public final class PitCons {
 	protected final static Dimension screenSize = Toolkit.getDefaultToolkit()
 			.getScreenSize();
 	protected final static Dimension initialWindowSize = new Dimension(
-			(int) (screenSize.getWidth() * windowSizeScale),
-			(int) (screenSize.getHeight() * windowSizeScale));
+			(int) (screenSize.getWidth() * windowSizeScale), (int) (screenSize
+					.getHeight() * windowSizeScale));
 	protected final static Point initialWindowPosition = new Point(
 			(int) (screenSize.getWidth() - initialWindowSize.getWidth()) / 2,
 			(int) (screenSize.getHeight() - initialWindowSize.getHeight()) / 2);
@@ -42,8 +50,8 @@ public final class PitCons {
 	protected final static int initialPyramidSize = (int) (initialWindowSize
 			.getWidth() * pyramidSizeScale);
 	protected final static Point initialPyramidPosition = new Point(
-			(int) initialWindowSize.getWidth() / 2,
-			(int) initialWindowSize.getHeight() / 2);
+			(int) initialWindowSize.getWidth() / 2, (int) initialWindowSize
+					.getHeight() / 2);
 	protected final static int squareSize = (int) (initialPyramidSize * squareSizeScale);
 
 	// constructor: nothing to do for static constants class
