@@ -347,5 +347,4 @@ public class PyramidPanel extends JPanel {
 			}
 		}
 	}
-
 }
