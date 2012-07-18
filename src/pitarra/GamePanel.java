@@ -14,6 +14,7 @@ public class GamePanel extends JPanel {
 	private PyramidPanel pyramid;
 	private boolean isPlayer1Turn;
 	private boolean basicGame;
+	private boolean soundOn;
 	private boolean takeNextPiece; // if true, next piece clicked is removed
 	private int p1PiecesLeft, p2PiecesLeft, p1PiecesLost, p2PiecesLost;
 
@@ -26,6 +27,7 @@ public class GamePanel extends JPanel {
 				PitCons.pyramidLineColor, this);
 		this.isPlayer1Turn = true;
 		this.basicGame = true;
+		this.soundOn = true;
 		this.takeNextPiece = false;
 		this.p1PiecesLeft = 12;
 		this.p2PiecesLeft = 12;
@@ -33,9 +35,8 @@ public class GamePanel extends JPanel {
 		this.p2PiecesLost = 0;
 
 		setLayout(new BorderLayout());
-		setPreferredSize(new Dimension(
-				(int) PitCons.initialWindowSize.getWidth(),
-				(int) PitCons.initialWindowSize.getHeight()));
+		setPreferredSize(new Dimension((int) PitCons.initialWindowSize
+				.getWidth(), (int) PitCons.initialWindowSize.getHeight()));
 		setDoubleBuffered(true);
 
 		add(pyramid, BorderLayout.CENTER);
