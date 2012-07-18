@@ -121,7 +121,7 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-	public void setPlayBasicGame(boolean basicGame) {
+	public void setBasicGame(boolean basicGame) {
 		this.basicGame = basicGame;
 	}
 
