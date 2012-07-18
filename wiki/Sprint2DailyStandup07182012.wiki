@@ -10,10 +10,16 @@ Details
 
 L- Began Sprint2, had group meeting, assigned work.
 
+M- Worked on the instruction menu.
+
 *What will you do today?*
 
-L-Complete Sprint2 Backlog, start counters for java code/
+L- Complete Sprint2 Backlog, start counters for java code/
+
+M- Continue working on instruction menu.
 
 *Are there any impediments in your way?*
 
 L- Lack of Java knowledge. Fear of incoming end of the world.
+
+M- Still not good with java lol
