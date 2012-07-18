@@ -187,6 +187,8 @@ public class PyramidPanel extends JPanel {
 	}
 
 	private void playBasicGame(Vertex v) {
+		if (!v.isAvailable()) // can't change a square once it's been set
+			return;
 		v.setPlayer(gPanel.isPlayer1Turn() ? 1 : 2);
 		v.drawSquare(getGraphics(), squareWidth);
 		gPanel.switchPlayer(); // next player's turn
@@ -251,7 +253,7 @@ public class PyramidPanel extends JPanel {
 		if (gPanel.isRemoveNextPiece()) {
 			int vertexPlayerNumber = v.getPlayer();
 			if (!v.isAvailable() && vertexPlayerNumber != currentPlayer) {
-				v.setAvailable(true);
+				v.setAvailable(true); // clear the square
 				v.drawSquare(getGraphics(), squareWidth);
 				gPanel.incrPiecesLost(vertexPlayerNumber);
 				gPanel.setRemoveNextPiece(false);
@@ -264,7 +266,7 @@ public class PyramidPanel extends JPanel {
 				System.out
 						.println("Can't remove your own piece.\nSelect a different vertex.");
 			}
-		} else { // place the piece
+		} else if (v.isAvailable()) {
 			v.setPlayer(currentPlayer);
 			v.drawSquare(getGraphics(), squareWidth);
 			// set the game piece counts
