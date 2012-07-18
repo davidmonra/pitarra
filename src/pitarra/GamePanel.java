@@ -126,6 +126,14 @@ public class GamePanel extends JPanel {
 		this.basicGame = basicGame;
 	}
 
+	public boolean isSoundOn() {
+		return soundOn;
+	}
+
+	public void setSoundOn(boolean soundOn) {
+		this.soundOn = soundOn;
+	}
+
 	public boolean isRemoveNextPiece() {
 		return takeNextPiece;
 	}
