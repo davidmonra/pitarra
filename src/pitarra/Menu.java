@@ -69,8 +69,8 @@ public class Menu extends JMenuBar{
     	menuGroupGame.add(NewBeg);
     	menuGroupGame.setSelected(NewBeg.getModel(), true);
     	
-    	menuGame.add(NewTrad);
     	menuGame.add(NewBeg);
+    	menuGame.add(NewTrad);
     	menuGame.addSeparator();
     	menuGame.add(sound);
     	menuGame.addSeparator();
