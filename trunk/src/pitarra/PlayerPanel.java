@@ -2,84 +2,74 @@ package pitarra;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 
 @SuppressWarnings("serial")
 public class PlayerPanel extends JPanel {
-	private static final String nameFieldPrompt = " Name? ";
+	private static final String nameFieldPrompt = "Enter your name";
 	private GamePanel gPanel;
-	private ImageIcon backdrop;
-	private String player;
-	private String playerName;
 	private JLabel titleLabel, nameLabel;
 	private JPanel namePanel;
+	private String player;
+	private String playerName;
+	private Color playerColor;
 
-	public PlayerPanel(GamePanel panel, ImageIcon backdrop, int playerNumber) {
+	public PlayerPanel(GamePanel panel, int playerNumber) {
 		this.gPanel = panel;
-		this.backdrop = backdrop;
-		this.player = "Player " + playerNumber;
-		this.playerName = nameFieldPrompt;
 		this.titleLabel = new JLabel("PLAYER " + playerNumber, JLabel.CENTER);
 		this.nameLabel = new JLabel(nameFieldPrompt, JLabel.CENTER);
 		this.namePanel = new JPanel();
-		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		this.player = "Player " + playerNumber;
+		this.playerName = nameFieldPrompt;
+		this.setOpaque(false);
 
-		// label appearance
-		titleLabel.setFont(PitCons.boldFont);
-		titleLabel.setOpaque(true);
+		// set the player color
 		switch (playerNumber) {
 		case 1:
-			titleLabel.setBackground(PitCons.player1SquareColor);
-			nameLabel.setBackground(PitCons.player1SquareColor);
+			this.playerColor = PitCons.player1Color;
 			break;
 		case 2:
-			titleLabel.setBackground(PitCons.player2SquareColor);
-			nameLabel.setBackground(PitCons.player2SquareColor);
+			this.playerColor = PitCons.player2Color;
 			break;
 		default:
-			titleLabel.setBackground(PitCons.genericBackColor);
-			nameLabel.setBackground(PitCons.genericBackColor);
+			this.playerColor = PitCons.genericBackColor;
 		}
-		titleLabel.setForeground(PitCons.genericBorderColor);
-		titleLabel.setBorder(BorderFactory
-				.createLineBorder(PitCons.genericBorderColor));
-		titleLabel.setIcon(backdrop);
+
+		// label appearance
+		titleLabel.setOpaque(true);
+		titleLabel.setFont(PitCons.boldFont);
+		titleLabel.setForeground(Color.black);
+		titleLabel.setBackground(playerColor);
 
 		// nameLabel appearance
-		nameLabel.setFont(PitCons.normalFont);
-		nameLabel.setOpaque(true);
-		nameLabel.setForeground(Color.gray);
-		nameLabel.setBorder(BorderFactory
-				.createBevelBorder(BevelBorder.LOWERED));
+		nameLabel.setOpaque(false);
+		nameLabel.setFont(PitCons.boldFont);
+		nameLabel.setForeground(Color.white);
 		nameLabel.addMouseListener(new PlayerListener());
 
 		// namePanel appearance
-		namePanel.setBorder(BorderFactory.createEtchedBorder());
+		namePanel.setOpaque(false);
+		namePanel.setPreferredSize(new Dimension(
+				PitCons.initialPlayerPanelWidth,
+				PitCons.initialPlayerPanelWidth / 2));
 		namePanel.setLayout(new GridLayout(2, 1));
+		namePanel.setBorder(PitCons.genericBorder);
+
 		// add labels to namePanel
 		namePanel.add(titleLabel);
 		namePanel.add(nameLabel);
 
 		add(namePanel);
-		setPreferredSize(new Dimension(PitCons.initialPyramidSize / 2,
-				PitCons.initialPyramidSize / 8));
-
 	}
 
-	public void paintComponent(Graphics page) {
-		super.paintComponent(page);
-		namePanel.repaint();
+	public String getPlayerName() {
+		return playerName;
 	}
 
 	private class PlayerListener implements MouseListener {
@@ -91,8 +81,8 @@ public class PlayerPanel extends JPanel {
 
 				if (userName != null && !userName.isEmpty()) {
 					playerName = userName;
-					nameLabel.setForeground(Color.black);
-					nameLabel.setText(" " + playerName + " ");
+					nameLabel.setForeground(playerColor);
+					nameLabel.setText(playerName);
 				}
 			}
 		}

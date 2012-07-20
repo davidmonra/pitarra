@@ -18,6 +18,8 @@ public class GamePanel extends JPanel {
 	private boolean takeNextPiece; // if true, next piece clicked is removed
 	private int p1PiecesLeft, p2PiecesLeft, p1PiecesLost, p2PiecesLost;
 
+	private PlayerPanel player1, player2;
+
 	public GamePanel(ImageIcon backdrop) {
 		super();
 		this.backdrop = backdrop;
@@ -34,12 +36,18 @@ public class GamePanel extends JPanel {
 		this.p1PiecesLost = 0;
 		this.p2PiecesLost = 0;
 
+		this.player1 = new PlayerPanel(this, 1);
+		this.player2 = new PlayerPanel(this, 2);
+
 		setLayout(new BorderLayout());
-		setPreferredSize(new Dimension((int) PitCons.initialWindowSize
-				.getWidth(), (int) PitCons.initialWindowSize.getHeight()));
+		setPreferredSize(new Dimension(
+				(int) PitCons.initialWindowSize.getWidth(),
+				(int) PitCons.initialWindowSize.getHeight()));
 		setDoubleBuffered(true);
 
 		add(pyramid, BorderLayout.CENTER);
+		add(player1, BorderLayout.WEST);
+		add(player2, BorderLayout.EAST);
 	}
 
 	public void resetGame() {
@@ -142,13 +150,35 @@ public class GamePanel extends JPanel {
 		this.takeNextPiece = removeNextPiece;
 	}
 
-	public void showMessage(String message) {
-		JOptionPane.showMessageDialog(this, message);
+	public void showMessage(String message, String title) {
+		JOptionPane.showMessageDialog(this, message, title,
+				JOptionPane.PLAIN_MESSAGE);
 	}
 
-	public void weGotWinner(int winner) {
-		String asdf = "player " + winner + " is the winner!";
-		showMessage(asdf);
+	public void showInstructions() {
+		if (isBasicGame()) {
+			showMessage(PitCons.basicInstructions, "Basic Game Instructions");
+		} else {
+			showMessage(PitCons.advancedInstructions,
+					"Advanced Game Instructions");
+		}
+	}
+
+	public void weGotWinner(int playerNumber) {
+		String message;
+		switch (playerNumber) { // get the player's name
+		case 1:
+			message = player1.getPlayerName();
+			break;
+		case 2:
+			message = player2.getPlayerName();
+			break;
+		default:
+			throw new IllegalArgumentException("Player number must be 1 or 2.");
+		}
+
+		message += " is the winner!";
+		showMessage(message, "Player " + playerNumber + " wins!");
 	}
 
 	public void paintComponent(Graphics page) {

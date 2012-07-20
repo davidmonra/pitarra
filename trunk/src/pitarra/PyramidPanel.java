@@ -30,6 +30,7 @@ public class PyramidPanel extends JPanel {
 		this.panelWidth = width;
 		this.lineColor = lineColor;
 		this.gPanel = panel;
+		this.setBorder(PitCons.genericBorder);
 		// the faces of the pyramid are unfolded onto a 3 x 8 2D grid
 		this.grid = new Vertex[gridRows][gridCols];
 
