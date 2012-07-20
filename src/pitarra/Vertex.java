@@ -91,11 +91,11 @@ public class Vertex extends Point {
 	public void drawSquare(Graphics page, int width) {
 		switch (player) {
 		case 1:
-			page.setColor(PitCons.player1SquareColor);
+			page.setColor(PitCons.player1Color);
 			setAvailable(false);
 			break;
 		case 2:
-			page.setColor(PitCons.player2SquareColor);
+			page.setColor(PitCons.player2Color);
 			setAvailable(false);
 			break;
 		default:

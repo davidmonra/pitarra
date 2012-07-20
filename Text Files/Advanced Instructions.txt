@@ -1,0 +1,25 @@
+How To Play:
+
+1. At the start of the game, each player has 12 tokens.
+
+2. Each turn, a player places a token on the board.
+
+3. When one player lines up 3 tokens in a row (vertically 
+   horizontally or diagonally), that player gets to take 
+   one of the other player's tokens off the board.
+
+4. Once both players have put all of their tokens on the 
+   board, then they can start moving their tokens to open 
+   spots to try and get 3 in a row.
+
+5. Tokens can only be moved one spot at a time to open 
+   spots. No jumping allowed.
+
+6. If a player can't move any of their tokens, they lose 
+   their turn.
+
+7. The game is a draw if all of the tokens for both players 
+   are on the board and there are no open spots left. 
+
+8. The players keep playing until one player has less than 
+   3 tokens on the board.
