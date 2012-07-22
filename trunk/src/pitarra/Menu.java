@@ -86,7 +86,7 @@ public class Menu extends JMenuBar {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			gPanel.setBasicGame(false);
-			gPanel.getPyramid().resetPyramid();
+			gPanel.resetGame();
 		}
 	}
 
@@ -95,7 +95,7 @@ public class Menu extends JMenuBar {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			gPanel.setBasicGame(true);
-			gPanel.getPyramid().resetPyramid();
+			gPanel.resetGame();
 		}
 	}
 

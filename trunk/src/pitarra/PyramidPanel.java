@@ -3,8 +3,8 @@ package pitarra;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -25,16 +25,13 @@ public class PyramidPanel extends JPanel {
 	public PyramidPanel(ImageIcon backdrop, int x, int y, int width,
 			Color lineColor, GamePanel panel) {
 		setBackdrop(backdrop);
-		setBounds(x - width / 2, y - width / 2, width, width);
-		setDoubleBuffered(true);
 		this.panelWidth = width;
 		this.lineColor = lineColor;
 		this.gPanel = panel;
-		this.setBorder(PitCons.genericBorder);
 		// the faces of the pyramid are unfolded onto a 3 x 8 2D grid
 		this.grid = new Vertex[gridRows][gridCols];
-
-		for (int row = 0; row < gridRows; row++)
+		this.setDoubleBuffered(true);
+		for (int row = 0; row < gridRows; row++) {
 			for (int col = 0; col < gridCols; col++) {
 				// Vertices at the corners of the pyramid have even indices
 				boolean isCornerVertex = false;
@@ -43,6 +40,7 @@ public class PyramidPanel extends JPanel {
 
 				grid[row][col] = new Vertex(isCornerVertex);
 			}
+		}
 
 		// set adjacent vertices
 		Vertex left, right, above, below;
@@ -75,13 +73,13 @@ public class PyramidPanel extends JPanel {
 				grid[row][col].setRight(right);
 			}
 		}
-		setGridCoords();
+
 		addMouseListener(new PyramidListener());
 	}
 
 	public void paintComponent(Graphics page) {
 		setGridCoords();
-		drawBackdrop(page);
+		Utilities.drawBackdrop(page, backdrop, panelWidth, panelWidth, this);
 		drawPyramid(page);
 	}
 
@@ -89,24 +87,38 @@ public class PyramidPanel extends JPanel {
 		this.backdrop = backdrop;
 	}
 
+	public int getSquareWidth() {
+		return squareWidth;
+	}
+
+	public int getGridCols() {
+		return gridCols;
+	}
+
+	public Vertex[][] getGrid() {
+		return grid;
+	}
+
 	public void resetPyramid() {
-		gPanel.setPlayer1Turn(true); // player 1 starts the game
+		repaint();
 		for (Vertex[] row : grid)
-			for (Vertex v : row) {
-				v.setAvailable(true);
-				v.drawSquare(getGraphics(), squareWidth);
-			}
+			for (Vertex v : row)
+				v.clearSquare(getGraphics(), squareWidth);
+	}
+
+	public void highlightPlayerSquares(int playerNumber) {
+		for (Vertex[] row : grid)
+			for (Vertex v : row)
+				if (v.getPlayer() == playerNumber)
+					v.highlightSquare(getGraphics(), squareWidth);
 	}
 
 	// private classes
 	private void setGridCoords() {
-		this.panelWidth = (int) (gPanel.getWidth() * PitCons.pyramidSizeScale);
+		this.panelWidth = Math.min(getWidth(), getHeight());
 		this.squareWidth = (int) (panelWidth * PitCons.squareSizeScale);
 		this.gridOffset = panelWidth / 10;
 		this.gridWidth = panelWidth - 2 * gridOffset;
-
-		setBounds(gPanel.getWidth() / 2 - panelWidth / 2, gPanel.getHeight()
-				/ 2 - panelWidth / 2, panelWidth, panelWidth);
 
 		int centerX = panelWidth / 2;
 		int centerY = panelWidth / 2;
@@ -167,15 +179,6 @@ public class PyramidPanel extends JPanel {
 				v.drawSquare(page, squareWidth);
 	}
 
-	private void drawBackdrop(Graphics page) {
-		// draw backdrop
-		if (backdrop != null) {
-			page.drawImage(backdrop.getImage(), 0, 0, panelWidth, panelWidth,
-					0, 0, backdrop.getIconWidth(), backdrop.getIconHeight(),
-					this);
-		}
-	}
-
 	private Vertex checkIfClicked(Point p) {
 		for (Vertex[] row : grid)
 			for (Vertex v : row) {
@@ -187,165 +190,32 @@ public class PyramidPanel extends JPanel {
 		return null;
 	}
 
-	private void playBasicGame(Vertex v) {
-		if (!v.isAvailable()) // can't change a square once it's been set
-			return;
-		v.setPlayer(gPanel.isPlayer1Turn() ? 1 : 2);
-		v.drawSquare(getGraphics(), squareWidth);
-		gPanel.switchPlayer(); // next player's turn
-		int winner = checkWin();
-		if (winner != 0) {
-			gPanel.weGotWinner(winner);
-			resetPyramid();
-		}
-	}
+	private class PyramidListener implements MouseListener {
+		Vertex startVertex, endVertex;
 
-	private int checkLeft(Vertex mid) {
-		int win = 0;
-		if (mid.getPlayer() != 0) {
-			if (mid.getPlayer() == mid.getLeft().getPlayer()
-					&& mid.getPlayer() == mid.getLeft().getLeft().getPlayer()) {
-				return mid.getPlayer();
-			}
-		}
-		return win;
-	}
-
-	private int checkWin() {
-		int win = 0;
-		for (int x = 0; x < gridCols; x++) {
-			if (grid[0][x].getPlayer() == 1) {
-				if (grid[0][x].getPlayer() == grid[0][x].getAbove().getPlayer()
-						&& grid[0][x].getPlayer() == grid[0][x].getAbove()
-								.getAbove().getPlayer()) {
-					return grid[0][x].getPlayer();
-				}
-			} else if (grid[0][x].getPlayer() == 2) {
-				if (grid[0][x].getPlayer() == grid[0][x].getAbove().getPlayer()
-						&& grid[0][x].getPlayer() == grid[0][x].getAbove()
-								.getAbove().getPlayer()) {
-					return grid[0][x].getPlayer();
-				}
-			}
-		}
-		for (int x = 0; x < gridCols; x++) {
-			if (x % 2 == 0) {
-				int win1 = checkLeft(grid[0][x]);
-				int win2 = checkLeft(grid[1][x]);
-				int win3 = checkLeft(grid[2][x]);
-				if (win1 != 0) {
-					return win1;
-				} else if (win2 != 0) {
-					return win2;
-				} else if (win3 != 0) {
-					return win3;
-				}
-			}
-		}
-
-		return win;
-	}
-
-	private void playTraditionalGame(Vertex v) {
-
-		System.out.println("\n");
-		int currentPlayer = gPanel.isPlayer1Turn() ? 1 : 2;
-		// remove the piece that was clicked
-		if (gPanel.isRemoveNextPiece()) {
-			int vertexPlayerNumber = v.getPlayer();
-			if (!v.isAvailable() && vertexPlayerNumber != currentPlayer) {
-				v.setAvailable(true); // clear the square
-				v.drawSquare(getGraphics(), squareWidth);
-				gPanel.incrPiecesLost(vertexPlayerNumber);
-				gPanel.setRemoveNextPiece(false);
-				gPanel.switchPlayer();
-
-				System.out.println("Piece removed");
-				// clear the remove piece flag
-
-			} else {
-				System.out
-						.println("Can't remove your own piece.\nSelect a different vertex.");
-			}
-		} else if (v.isAvailable()) {
-			v.setPlayer(currentPlayer);
-			v.drawSquare(getGraphics(), squareWidth);
-			// set the game piece counts
-			gPanel.decrPiecesLeft(currentPlayer);
-			// check if v is part of a 3-in-a-row
-			if (currentPlayerGot3inArow(v)) {
-				System.out.println("Player " + v.getPlayer()
-						+ " gets to remove one of player "
-						+ (v.getPlayer() % 2 + 1) + "'s pieces.");
-				// highlight pieces that can be removed
-
-				// set remove next piece flag in game panel
-				gPanel.setRemoveNextPiece(true);
-			} else {
-				gPanel.switchPlayer(); // next player's turn
-			}
-		}
-		// ===================================
-		System.out.println("Corner Vertex =\t" + v.isCornerVertex());
-		System.out.println("Player1: " + gPanel.getPiecesLeft(1) + "\tLost: "
-				+ gPanel.getPiecesLost(1));
-		System.out.println("Player2: " + gPanel.getPiecesLeft(2) + "\tLost: "
-				+ gPanel.getPiecesLost(2));
-		System.out.println("3-in-a-row =\t" + currentPlayerGot3inArow(v));
-
-		// ===================================
-
-	}
-
-	// checks if Vertex v is part of a 3-in-a-row for the current player
-	private boolean currentPlayerGot3inArow(Vertex v) {
-		// check for vertical 3-in-a-row
-		Vertex bottom = v;
-		// go to the bottom vertex in the current column
-		while (bottom.getBelow() != null) {
-			bottom = bottom.getBelow();
-		}
-		if (v.getPlayer() == bottom.getPlayer()
-				&& bottom.getPlayer() == bottom.getAbove().getPlayer()
-				&& bottom.getPlayer() == bottom.getAbove().getAbove()
-						.getPlayer()) {
-			return true;
-		}
-		// check for horizontal 3-in-a-row
-		// have to check 2 sides of the pyramid if v is a corner
-		if (v.isCornerVertex()) {
-			// check left face of pyramid
-			if (v.getPlayer() == v.getLeft().getPlayer()
-					&& v.getPlayer() == v.getLeft().getLeft().getPlayer()) {
-				return true;
-			}
-			// check right face of pyramid
-			if (v.getPlayer() == v.getRight().getPlayer()
-					&& v.getPlayer() == v.getRight().getRight().getPlayer()) {
-				return true;
-			}
-		} else { // v is a middle vertex
-			// just check vertices to the left and right of v
-			if (v.getPlayer() == v.getLeft().getPlayer()
-					&& v.getPlayer() == v.getRight().getPlayer()) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	private class PyramidListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			Vertex v = checkIfClicked(e.getPoint()); // check the grid
-			if (v != null) {
-				if (gPanel.isBasicGame()) { // basic game
-					playBasicGame(v);
-				} else { // traditional game
-					playTraditionalGame(v);
-				}
-			}
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			startVertex = checkIfClicked(e.getPoint());
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			endVertex = checkIfClicked(e.getPoint());
+			if (startVertex == null || endVertex == null) // nothing to do
+				return;
+			gPanel.playGame(startVertex, endVertex);
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
 		}
 	}
 }

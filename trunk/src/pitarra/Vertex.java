@@ -9,6 +9,7 @@ public class Vertex extends Point {
 	private boolean isAvailable;
 	private boolean isCornerVertex;
 	private int player;
+	private Color squareColor;
 	private Vertex left, right, above, below; // adjacent vertices
 
 	public Vertex(boolean isCornerVertex) {
@@ -17,6 +18,7 @@ public class Vertex extends Point {
 		this.isAvailable = true;
 		this.isCornerVertex = isCornerVertex;
 		this.player = 0;
+		this.squareColor = PitCons.squareClearColor;
 		this.left = null;
 		this.right = null;
 		this.above = null;
@@ -29,8 +31,6 @@ public class Vertex extends Point {
 
 	public void setAvailable(boolean available) {
 		this.isAvailable = available;
-		if (available)
-			this.player = 0;
 	}
 
 	public boolean isCornerVertex() {
@@ -74,8 +74,24 @@ public class Vertex extends Point {
 	}
 
 	public void setPlayer(int player) {
-		if (isAvailable) // can't change player once its been selected
-			this.player = player;
+		this.player = player;
+		setColor();
+	}
+
+	public void setColor() {
+		switch (player) {
+		case 1:
+			squareColor = PitCons.player1Color;
+			setAvailable(false);
+			break;
+		case 2:
+			squareColor = PitCons.player2Color;
+			setAvailable(false);
+			break;
+		default:
+			squareColor = PitCons.squareClearColor;
+			setAvailable(true);
+		}
 	}
 
 	public void drawConnectingLines(Graphics page, Color color) {
@@ -89,18 +105,22 @@ public class Vertex extends Point {
 	}
 
 	public void drawSquare(Graphics page, int width) {
-		switch (player) {
-		case 1:
-			page.setColor(PitCons.player1Color);
-			setAvailable(false);
-			break;
-		case 2:
-			page.setColor(PitCons.player2Color);
-			setAvailable(false);
-			break;
-		default:
-			page.setColor(Color.gray);
-		}
+		page.setColor(squareColor);
 		page.fillRect(x - width / 2, y - width / 2, width, width);
 	}
+
+	public void highlightSquare(Graphics page, int width) {
+		int playerNum = player;
+		clearSquare(page, width);
+		squareColor = PitCons.squareHighlightColor;
+		drawSquare(page, width + 10);
+		setPlayer(playerNum);
+		drawSquare(page, width);
+	}
+
+	public void clearSquare(Graphics page, int width) {
+		setPlayer(0);
+		drawSquare(page, width);
+	}
+
 }
