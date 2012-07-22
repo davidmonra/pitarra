@@ -1,10 +1,14 @@
 package pitarra;
 
+import java.awt.Graphics;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public final class FileUtilities {
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+public final class Utilities {
 
 	public static final String readFile(String pathAndFilename) {
 		File file = new File(pathAndFilename);
@@ -28,8 +32,16 @@ public final class FileUtilities {
 		}
 	}
 
+	public static void drawBackdrop(Graphics page, ImageIcon backdrop,
+			int width, int height, JPanel panel) {
+		if (backdrop != null) {
+			page.drawImage(backdrop.getImage(), 0, 0, width, height, 0, 0,
+					backdrop.getIconWidth(), backdrop.getIconHeight(), panel);
+		}
+	}
+
 	// static class is never instantiated
-	private FileUtilities() {
+	private Utilities() {
 
 	}
 }

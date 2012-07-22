@@ -15,21 +15,38 @@ public final class PitCons {
 	// text strings
 	protected final static String title = "PITARRA";
 	protected final static String newGame = "New Game";
+
 	// Fonts
-	protected final static int fontSize = 20;
-	protected final static Font boldFont = new Font("Ariel", Font.BOLD,
+	protected final static int fontSize = 25;
+	protected final static String fontName = "Ariel";
+	protected final static Font normalFont = new Font(fontName, Font.PLAIN,
 			fontSize);
-	protected final static Font normalFont = new Font("Sans Serif", Font.PLAIN,
+	protected final static Font boldFont = new Font(fontName, Font.BOLD,
 			fontSize);
+	protected final static Font italicFont = new Font(fontName, Font.ITALIC,
+			fontSize);
+	protected final static Font italicBoldFont = new Font(fontName, Font.ITALIC
+			+ Font.BOLD, fontSize);
+	protected final static Font bigBoldFont = new Font(fontName, Font.ITALIC
+			+ Font.BOLD, fontSize * 3 / 2);
+
+	// number of pieces
+	protected final static int initialNumberOfPieces = 12;
+
 	// window constants
-	protected final static double windowSizeScale = .6; // % of screen width
+	protected final static double windowSizeScale = .7; // % of screen width
 	protected final static double pyramidSizeScale = .5; // % of window width
 	protected final static double squareSizeScale = .06; // % of pyramid width
+
 	// color constants
 	protected final static Color pyramidLineColor = Color.black;
+	protected final static Color custonFontColor = new Color(255, 150, 75);
+	// protected final static Color player1Color = custonFontColor;
 	protected final static Color player1Color = Color.red;
 	protected final static Color player2Color = Color.yellow;
 	protected final static Color genericBackColor = Color.orange;
+	protected final static Color squareClearColor = Color.gray;
+	protected final static Color squareHighlightColor = Color.cyan;
 
 	// border thickness constants
 	protected final static Color genericBorderColor = Color.black;
@@ -43,17 +60,23 @@ public final class PitCons {
 	// Make sure the file names are the same.
 	protected final static ImageIcon gameBackdrop = new ImageIcon(
 			"icons/GameBackdrop.jpg");
+	// protected final static ImageIcon pyramidBackdrop = new ImageIcon(
+	// "icons/PyramidBackdrop.jpg");
 	protected final static ImageIcon pyramidBackdrop = new ImageIcon(
-			"icons/PyramidBackdrop.jpg");
-	protected final static ImageIcon Player1Backdrop = new ImageIcon(
+			"icons/AztecSacrifice.jpg");
+	protected final static ImageIcon player1Backdrop = new ImageIcon(
 			"icons/Player1Backdrop.jpg");
-	protected final static ImageIcon Player2Backdrop = new ImageIcon(
+	protected final static ImageIcon player2Backdrop = new ImageIcon(
 			"icons/Player2Backdrop.jpg");
+	protected final static ImageIcon calendarBackdrop = new ImageIcon(
+			"icons/AztecCalendarBackdrop.JPG");
+	protected final static ImageIcon sacrificeBackdrop = new ImageIcon(
+			"icons/AztecSacrifice.jpg.JPG");
 
 	// File text constants
-	protected final static String advancedInstructions = FileUtilities
+	protected final static String advancedInstructions = Utilities
 			.readFile("Text Files/Advanced Instructions.txt");
-	protected final static String basicInstructions = FileUtilities
+	protected final static String basicInstructions = Utilities
 			.readFile("Text Files/Basic Instructions.txt");
 
 	// Calculated size and position constants
@@ -66,6 +89,7 @@ public final class PitCons {
 	protected final static Point initialWindowPosition = new Point(
 			(int) (screenSize.getWidth() - initialWindowSize.getWidth()) / 2,
 			(int) (screenSize.getHeight() - initialWindowSize.getHeight()) / 2);
+
 	// pyramid constants
 	protected final static int initialPyramidSize = (int) (initialWindowSize
 			.getWidth() * pyramidSizeScale);
@@ -73,6 +97,7 @@ public final class PitCons {
 			(int) initialWindowSize.getWidth() / 2,
 			(int) initialWindowSize.getHeight() / 2);
 	protected final static int squareSize = (int) (initialPyramidSize * squareSizeScale);
+
 	// Panel Size constants
 	protected final static int initialPlayerPanelWidth = (int) ((initialWindowSize.width - initialPyramidSize) / 2.5);
 
