@@ -13,14 +13,20 @@ L- Sprint2 backlog, Java coding(not implemented), tried to contact client.
 
 MAG- Worked on and finished instruction menu.
 
+JS- Finished move pieces code for advanced play. Added player turn prompting and color to player panels.
+
 *What will you do today?*
 
 L- Finish paperwork for Sprint2, get prepared for sprint 3, try to contact client.
 
 MAG- Go over any bugs that may occur.
 
+JS- Integrate Jesse's sound player.
+
 *Are there any impediments in your way?*
 
 L- Java coding skills subpar, Client has not contact group in 2 weeks despite repeated emails asking for rules translations.
+
+JS- no
 
 MAG- Waiting for information from the client. 
