@@ -11,10 +11,16 @@ Daily Standup for July 23
 
 L- Sprint2 backlog, Java coding(not implemented), tried to contact client.
 
+MAG- Worked on and finished instruction menu.
+
 *What will you do today?*
 
 L- Finish paperwork for Sprint2, get prepared for sprint 3, try to contact client.
 
+MAG- Go over any bugs that may occur.
+
 *Are there any impediments in your way?*
 
 L- Java coding skills subpar, Client has not contact group in 2 weeks despite repeated emails asking for rules translations.
+
+MAG- Waiting for information from the client. 
