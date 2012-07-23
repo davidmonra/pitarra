@@ -41,6 +41,7 @@ public final class PitCons {
 	// color constants
 	protected final static Color pyramidLineColor = Color.black;
 	protected final static Color custonFontColor = new Color(255, 150, 75);
+	protected final static Color notifyTextColor = Color.cyan;
 	// protected final static Color player1Color = custonFontColor;
 	protected final static Color player1Color = Color.red;
 	protected final static Color player2Color = Color.yellow;
@@ -54,6 +55,11 @@ public final class PitCons {
 	protected final static Border genericBorder = BorderFactory
 			.createLineBorder(PitCons.genericBorderColor,
 					PitCons.borderThickness);
+
+	// player panel constants
+	protected final static String nameFieldPrompt = "Enter your name";
+	protected final static String pieceCountText = " left";
+	protected final static String pieceLostText = " lost";
 
 	// image icons
 	// Change the .jpg image files in the icons folder to change the backdrops.
@@ -72,6 +78,10 @@ public final class PitCons {
 			"icons/AztecCalendarBackdrop.JPG");
 	protected final static ImageIcon sacrificeBackdrop = new ImageIcon(
 			"icons/AztecSacrifice.jpg.JPG");
+
+	// instruction constants
+	protected final static String basicInstructionsTitle = "Basic Game Instructions";
+	protected final static String advancedInstructionsTitle = "Advanced Game Instructions";
 
 	// File text constants
 	protected final static String advancedInstructions = Utilities
