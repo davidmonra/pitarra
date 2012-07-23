@@ -14,9 +14,6 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class PlayerPanel extends JPanel {
-	private static final String nameFieldPrompt = "Enter your name";
-	private static final String pieceCountText = "Left: ";
-	private static final String pieceLostText = "Lost: ";
 	private GamePanel gPanel;
 	private JLabel titleLabel, nameLabel, piecesLeft, piecesLost;
 	private JPanel namePanel;
@@ -24,22 +21,24 @@ public class PlayerPanel extends JPanel {
 	private String playerName;
 	private ImageIcon backdrop;
 	private Color playerColor;
+	private boolean showColorText;
 
 	public PlayerPanel(ImageIcon backdrop, int playerNumber, Color playerColor,
 			GamePanel panel) {
 		this.gPanel = panel;
 		this.titleLabel = new JLabel("PLAYER " + playerNumber, JLabel.CENTER);
-		this.nameLabel = new JLabel(nameFieldPrompt, JLabel.CENTER);
-		this.piecesLeft = new JLabel(pieceCountText
-				+ gPanel.getPiecesLeft(playerNumber), JLabel.CENTER);
-		this.piecesLost = new JLabel(pieceLostText
-				+ gPanel.getPiecesLost(playerNumber), JLabel.CENTER);
+		this.nameLabel = new JLabel(PitCons.nameFieldPrompt, JLabel.CENTER);
+		this.piecesLeft = new JLabel(gPanel.getPiecesLeft(playerNumber)
+				+ PitCons.pieceCountText, JLabel.CENTER);
+		this.piecesLost = new JLabel(gPanel.getPiecesLost(playerNumber)
+				+ PitCons.pieceLostText, JLabel.CENTER);
 		this.namePanel = new JPanel();
 		this.player = "Player " + playerNumber;
-		this.playerName = nameFieldPrompt;
+		this.playerName = PitCons.nameFieldPrompt;
 		this.setOpaque(false);
 		this.backdrop = backdrop;
 		this.playerColor = playerColor;
+		this.showColorText = true;
 
 		// titleLabel appearance
 		titleLabel.setOpaque(false);
@@ -48,7 +47,6 @@ public class PlayerPanel extends JPanel {
 		// nameLabel appearance
 		nameLabel.setOpaque(false);
 		nameLabel.setFont(PitCons.boldFont);
-		nameLabel.setForeground(playerColor);
 		nameLabel.addMouseListener(new PlayerListener());
 
 		// pieceCount appearance
@@ -85,19 +83,35 @@ public class PlayerPanel extends JPanel {
 		setPiecesLeft(PitCons.initialNumberOfPieces);
 		setPiecesLost(0);
 		piecesLost.setVisible(!isBasicGame);
-		// repaint();
+		showColorText(showColorText);
 	}
 
 	public String getPlayerName() {
-		return playerName;
+		if (playerName.compareTo(PitCons.nameFieldPrompt) != 0)
+			return playerName;
+		else
+			return player;
+	}
+
+	public String getPlayer() {
+		return player;
+	}
+
+	public void showColorText(boolean highlightOn) {
+		Color textColor = highlightOn ? playerColor : Color.black;
+		titleLabel.setForeground(textColor);
+		nameLabel.setForeground(textColor);
+		piecesLeft.setForeground(textColor);
+		piecesLost.setForeground(textColor);
+		repaint();
 	}
 
 	public void setPiecesLeft(int pieceCount) {
-		this.piecesLeft.setText(pieceCountText + pieceCount);
+		this.piecesLeft.setText(pieceCount + PitCons.pieceCountText);
 	}
 
 	public void setPiecesLost(int piecesLost) {
-		this.piecesLost.setText(pieceLostText + piecesLost);
+		this.piecesLost.setText(piecesLost + PitCons.pieceLostText);
 	}
 
 	private class PlayerListener implements MouseListener {
@@ -105,7 +119,8 @@ public class PlayerPanel extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			if (e.getSource() == nameLabel) {
 				String userName = JOptionPane.showInputDialog(nameLabel,
-						nameFieldPrompt, player, JOptionPane.QUESTION_MESSAGE);
+						PitCons.nameFieldPrompt, player,
+						JOptionPane.QUESTION_MESSAGE);
 
 				if (userName != null && !userName.isEmpty()) {
 					playerName = userName;
@@ -117,27 +132,18 @@ public class PlayerPanel extends JPanel {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
 		}
-
 	}
 }
