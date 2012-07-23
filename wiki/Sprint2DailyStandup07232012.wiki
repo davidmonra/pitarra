@@ -1,0 +1,20 @@
+#summary print 2 Daily Standup (07/23/2012)
+
+= Introduction =
+
+Daily Standup for July 23
+
+
+= Details =
+
+*What did you do yesterday?*
+
+L- Sprint2 backlog, Java coding(not implemented), tried to contact client.
+
+*What will you do today?*
+
+L- Finish paperwork for Sprint2, get prepared for sprint 3, try to contact client.
+
+*Are there any impediments in your way?*
+
+L- Java coding skills subpar, Client has not contact group in 2 weeks despite repeated emails asking for rules translations.
