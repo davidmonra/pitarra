@@ -13,11 +13,15 @@ L.-Being more proactive in finding needed materials.
 
 MAG-Start doing some research on Aztec culture to get a better understanding of what should be added to the game
 
+PHP- work on language support
+
 *What should we stop doing?*
 
 L.- Creating wiki pages at the last moment.
 
 MAG- Nothing
+
+PHP- at this point, the group is a finely tuned machine that works really well, so nothing.
 
 
 *What should we continue doing?*
@@ -25,3 +29,5 @@ MAG- Nothing
 L.- Keeping up the good teamwork and communication flow.
 
 MAG- Agreed with Lin keeping in contact has been great.
+
+PHP- fight Charlie Sheen. just kidding, the team work is superb, so there's that.
