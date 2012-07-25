@@ -6,6 +6,11 @@ import java.awt.Point;
 
 @SuppressWarnings("serial")
 public class Vertex extends Point {
+	private static final int cornKernalX[] = { 5, 8, 19, 21, 13 };
+	private static final int cornKernalY[] = { 0, 10, 10, 0, -2 };
+
+	private int xPoints[];
+	private int yPoints[];
 	private boolean isAvailable;
 	private boolean isCornerVertex;
 	private int player;
@@ -23,6 +28,27 @@ public class Vertex extends Point {
 		this.right = null;
 		this.above = null;
 		this.below = null;
+
+		this.xPoints = new int[cornKernalX.length];
+		this.yPoints = new int[cornKernalY.length];
+	}
+
+	public void drawCornKernal(Graphics page, int width) {
+		int x = (int) getX();
+		int y = (int) getY();
+
+		for (int i = 0; i < cornKernalX.length; i++) {
+			xPoints[i] = x - width / 2 + cornKernalX[i]
+					* (width / PitCons.squareSize);
+			yPoints[i] = y - width / 4 + cornKernalY[i]
+					* (width / PitCons.squareSize);
+		}
+
+		page.setColor(squareColor);
+
+		page.fillPolygon(xPoints, yPoints, xPoints.length);
+		page.setColor(PitCons.genericBorderColor);
+		page.drawPolygon(xPoints, yPoints, xPoints.length);
 	}
 
 	public boolean isAvailable() {
