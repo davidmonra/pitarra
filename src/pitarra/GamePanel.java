@@ -13,8 +13,9 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel {
-	private static final String removePieceMessage = ", click on a highlighted square.";
-	private static final String yourTurnMessage = "'s turn";
+	private static final String takePieceMessage = ", take a highlighted square.";
+	private static final String yourTurnMessage = "'s turn.";
+	private static final String movePieceMessage = ", drag your piece on a line.";
 	private ImageIcon backdrop;
 	private PyramidPanel pyramid;
 	private boolean isPlayer1Turn;
@@ -26,6 +27,7 @@ public class GamePanel extends JPanel {
 	private JPanel eastPanel, westPanel, centerPanel, northPanel;
 	private PlayerPanel player1, player2;
 	private JLabel notifyText;
+	private Dimension windowSize;
 
 	public GamePanel(ImageIcon backdrop) {
 		super();
@@ -56,12 +58,13 @@ public class GamePanel extends JPanel {
 		this.p2PiecesLost = 0;
 		this.isPlayer1Turn = true;
 		this.notifyText = new JLabel();
+		this.windowSize = new Dimension(
+				(int) PitCons.initialWindowSize.getWidth(),
+				(int) PitCons.initialWindowSize.getHeight());
 		clearTakeNextPiece();
 
 		setLayout(new BorderLayout());
-		setPreferredSize(new Dimension(
-				(int) PitCons.initialWindowSize.getWidth(),
-				(int) PitCons.initialWindowSize.getHeight()));
+		setPreferredSize(windowSize);
 		setDoubleBuffered(true);
 
 		eastPanel.setOpaque(false);
@@ -87,7 +90,7 @@ public class GamePanel extends JPanel {
 		add(westPanel, BorderLayout.WEST);
 		add(northPanel, BorderLayout.NORTH);
 
-		notifyPlayer(getCurrentPlayerNumber());
+		notifyPlayer(getCurrentPlayerNumber(), yourTurnMessage);
 	}
 
 	public void resetGame() {
@@ -100,23 +103,86 @@ public class GamePanel extends JPanel {
 		this.isPlayer1Turn = true;
 		this.pyramid.resetPyramid();
 		clearTakeNextPiece();
-		notifyPlayer(getCurrentPlayerNumber());
+		notifyPlayer(getCurrentPlayerNumber(), yourTurnMessage);
 	}
 
 	public void paintComponent(Graphics page) {
 		Utilities.drawBackdrop(page, backdrop, getWidth(), getHeight(), this);
+		this.getSize();
 	}
 
 	public void playGame(Vertex startVertex, Vertex endVertex) {
 		if (startVertex == null || endVertex == null)
 			throw new IllegalArgumentException("Vertices cannot be null.");
 
+		int currentPlayer = getCurrentPlayerNumber();
+		int otherPlayer = getOtherPlayerNumber();
+
 		boolean dragAndDrop = (startVertex != endVertex);
-		if (basicGame) {
-			if (!dragAndDrop) // basic game
+		boolean takePiece = takeNextPiece && !dragAndDrop;
+		boolean putPiece = !dragAndDrop && !takeNextPiece
+				&& getPiecesLeft(currentPlayer) > 0;
+		boolean movePiece = !takeNextPiece && dragAndDrop;
+
+		if (basicGame) {// basic game
+			if (!dragAndDrop)
 				playBasicGame(startVertex);
 		} else { // traditional game
-			playTraditionalGame(dragAndDrop, startVertex, endVertex);
+			if (takePiece)
+				removePieceFromBoard(startVertex);
+			else if (putPiece)
+				putPiecesOnBoard(startVertex, endVertex, currentPlayer,
+						otherPlayer);
+			else if (movePiece)
+				movePiecesOnBoard(startVertex, endVertex, currentPlayer,
+						otherPlayer);
+		}
+	}
+
+	private void removePieceFromBoard(Vertex v) {
+		int vertexPlayerNumber = v.getPlayer();
+		if (vertexPlayerNumber == playerToRemove) {
+			takePiece(v);
+			incrPiecesLost(vertexPlayerNumber);
+			notifyPlayer(getCurrentPlayerNumber(), yourTurnMessage);
+		}
+	}
+
+	private void putPiecesOnBoard(Vertex v, Vertex newLocation,
+			int currentPlayer, int otherPlayer) {
+		if (v.isAvailable()) {// put down more pieces
+			v.setPlayer(currentPlayer);
+			v.drawPieces(pyramid.getGraphics(), this, pyramid.getSquareWidth());
+			decrPiecesLeft(currentPlayer); // set the game piece counts
+			if (playerGot3inArow(currentPlayer, v)) { // is v in 3-in-a-row?
+				highlightPieces(otherPlayer);
+				notifyPlayer(otherPlayer, takePieceMessage);
+			} else {
+				notifyPlayer(otherPlayer, yourTurnMessage);
+			}
+			switchPlayer();
+		}
+	}
+
+	private void movePiecesOnBoard(Vertex v, Vertex newLocation,
+			int currentPlayer, int otherPlayer) {
+		boolean isAdjacentVertex = newLocation == v.getLeft()
+				|| newLocation == v.getRight() || newLocation == v.getAbove()
+				|| newLocation == v.getBelow();
+
+		if (v.getPlayer() == currentPlayer && newLocation.isAvailable()
+				&& isAdjacentVertex) {
+			v.clearSquare(pyramid.getGraphics(), pyramid.getSquareWidth());
+			newLocation.setPlayer(currentPlayer);
+			newLocation.drawPieces(pyramid.getGraphics(), this,
+					pyramid.getSquareWidth());
+			if (playerGot3inArow(currentPlayer, newLocation)) {
+				highlightPieces(otherPlayer);
+				notifyPlayer(otherPlayer, takePieceMessage);
+			} else {
+				notifyPlayer(otherPlayer, movePieceMessage);
+			}
+			switchPlayer();
 		}
 	}
 
@@ -125,10 +191,10 @@ public class GamePanel extends JPanel {
 			return;
 		int playerNumber = getCurrentPlayerNumber();
 		v.setPlayer(playerNumber);
-		v.drawSquare(pyramid.getGraphics(), pyramid.getSquareWidth());
+		v.drawPieces(pyramid.getGraphics(), this, pyramid.getSquareWidth());
 		decrPiecesLeft(playerNumber);
 		switchPlayer(); // next player's turn
-		notifyPlayer(getCurrentPlayerNumber());
+		notifyPlayer(getCurrentPlayerNumber(), yourTurnMessage);
 		int winner = checkWin();
 		if (winner != 0) {
 			weGotWinner(winner);
@@ -185,74 +251,19 @@ public class GamePanel extends JPanel {
 		return win;
 	}
 
-	private void playTraditionalGame(boolean movePiece, Vertex v,
-			Vertex newLocation) {
-		if (v == null || newLocation == null)
-			throw new IllegalArgumentException("Vertices cannot be null.");
-
-		int currentPlayer = getCurrentPlayerNumber();
-		int otherPlayer = getOtherPlayerNumber();
-		boolean piecesLeft = getPiecesLeft(currentPlayer) > 0;
-
-		// remove the piece that was clicked
-		if (takeNextPiece && !movePiece) {
-			int vertexPlayerNumber = v.getPlayer();
-			if (vertexPlayerNumber == playerToRemove) {
-				takePiece(v);
-				incrPiecesLost(vertexPlayerNumber);
-			}
-			notifyPlayer(getCurrentPlayerNumber());
-		} else if (piecesLeft) {
-			if (v.isAvailable() && !movePiece) {// put down more pieces
-				v.setPlayer(currentPlayer);
-				v.drawSquare(pyramid.getGraphics(), pyramid.getSquareWidth());
-				decrPiecesLeft(currentPlayer); // set the game piece counts
-				if (playerGot3inArow(currentPlayer, v)) // is v in 3-in-a-row?
-					highlightPieces(currentPlayer, otherPlayer);
-				else
-					notifyPlayer(getOtherPlayerNumber());
-				switchPlayer();
-			}
-		} else if (movePiece) { // start moving pieces
-			boolean isAdjacentVertex = newLocation == v.getLeft()
-					|| newLocation == v.getRight()
-					|| newLocation == v.getAbove()
-					|| newLocation == v.getBelow();
-
-			if (v.getPlayer() == currentPlayer && newLocation.isAvailable()
-					&& isAdjacentVertex) {
-				v.clearSquare(pyramid.getGraphics(), pyramid.getSquareWidth());
-				newLocation.setPlayer(currentPlayer);
-				newLocation.drawSquare(pyramid.getGraphics(),
-						pyramid.getSquareWidth());
-				if (playerGot3inArow(currentPlayer, newLocation))
-					highlightPieces(currentPlayer, otherPlayer);
-				else
-					notifyPlayer(getOtherPlayerNumber());
-				switchPlayer();
-			}
-		}
-	}
-
-	private void highlightPieces(int currentPlayer, int otherPlayer) {
+	private void highlightPieces(int player) {
 		// highlight pieces that can be removed
-		pyramid.highlightPlayerSquares(otherPlayer);
-		if (currentPlayer == 1)
-			setNotifyText(player1.getPlayerName() + removePieceMessage,
-					PitCons.player1Color);
-		else
-			setNotifyText(player2.getPlayerName() + removePieceMessage,
-					PitCons.player2Color);
+		pyramid.highlightPlayerSquares(player);
 		// set remove piece flag
-		setTakeNextPiece(true, otherPlayer);
+		setTakeNextPiece(true, player);
 	}
 
-	private void notifyPlayer(int player) {
+	private void notifyPlayer(int player, String message) {
 		if (player == 1)
-			setNotifyText(player1.getPlayerName() + yourTurnMessage,
+			setNotifyText(player1.getPlayerName() + message,
 					PitCons.player1Color);
 		else
-			setNotifyText(player2.getPlayerName() + yourTurnMessage,
+			setNotifyText(player2.getPlayerName() + message,
 					PitCons.player2Color);
 	}
 
