@@ -18,7 +18,7 @@ public class PyramidPanel extends JPanel {
 	private int gridWidth;
 	private int squareWidth;
 	private ImageIcon backdrop;
-	private Color lineColor;
+	// private Color lineColor;
 	private Vertex[][] grid;
 	private GamePanel gPanel;
 
@@ -26,7 +26,7 @@ public class PyramidPanel extends JPanel {
 			Color lineColor, GamePanel panel) {
 		setBackdrop(backdrop);
 		this.panelWidth = width;
-		this.lineColor = lineColor;
+		// this.lineColor = lineColor;
 		this.gPanel = panel;
 		// the faces of the pyramid are unfolded onto a 3 x 8 2D grid
 		this.grid = new Vertex[gridRows][gridCols];
@@ -110,7 +110,7 @@ public class PyramidPanel extends JPanel {
 		for (Vertex[] row : grid)
 			for (Vertex v : row)
 				if (v.getPlayer() == playerNumber)
-					v.highlightSquare(getGraphics(), squareWidth);
+					v.highlight(getGraphics(), squareWidth);
 	}
 
 	// private classes
@@ -173,10 +173,10 @@ public class PyramidPanel extends JPanel {
 	private void drawPyramid(Graphics page) {
 		for (Vertex[] row : grid)
 			for (Vertex v : row)
-				v.drawConnectingLines(page, lineColor);
+				v.drawConnectingLines(page);
 		for (Vertex[] row : grid)
 			for (Vertex v : row)
-				v.drawSquare(page, squareWidth);
+				v.drawPieces(page, this, squareWidth);
 	}
 
 	private Vertex checkIfClicked(Point p) {

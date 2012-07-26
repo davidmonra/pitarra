@@ -4,18 +4,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 @SuppressWarnings("serial")
 public class Vertex extends Point {
-	private static final int cornKernalX[] = { 5, 8, 19, 21, 13 };
-	private static final int cornKernalY[] = { 0, 10, 10, 0, -2 };
-
-	private int xPoints[];
-	private int yPoints[];
 	private boolean isAvailable;
 	private boolean isCornerVertex;
 	private int player;
-	private Color squareColor;
+	private Color squareColor, lineColor;
 	private Vertex left, right, above, below; // adjacent vertices
+	private ImageIcon cornKernal;
 
 	public Vertex(boolean isCornerVertex) {
 		super();
@@ -24,31 +23,12 @@ public class Vertex extends Point {
 		this.isCornerVertex = isCornerVertex;
 		this.player = 0;
 		this.squareColor = PitCons.squareClearColor;
+		this.lineColor = PitCons.pyramidLineColor;
 		this.left = null;
 		this.right = null;
 		this.above = null;
 		this.below = null;
-
-		this.xPoints = new int[cornKernalX.length];
-		this.yPoints = new int[cornKernalY.length];
-	}
-
-	public void drawCornKernal(Graphics page, int width) {
-		int x = (int) getX();
-		int y = (int) getY();
-
-		for (int i = 0; i < cornKernalX.length; i++) {
-			xPoints[i] = x - width / 2 + cornKernalX[i]
-					* (width / PitCons.squareSize);
-			yPoints[i] = y - width / 4 + cornKernalY[i]
-					* (width / PitCons.squareSize);
-		}
-
-		page.setColor(squareColor);
-
-		page.fillPolygon(xPoints, yPoints, xPoints.length);
-		page.setColor(PitCons.genericBorderColor);
-		page.drawPolygon(xPoints, yPoints, xPoints.length);
+		this.cornKernal = new ImageIcon();
 	}
 
 	public boolean isAvailable() {
@@ -99,19 +79,21 @@ public class Vertex extends Point {
 		return player;
 	}
 
-	public void setPlayer(int player) {
-		this.player = player;
-		setColor();
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
 	}
 
-	public void setColor() {
+	public void setPlayer(int player) {
+		this.player = player;
 		switch (player) {
 		case 1:
 			squareColor = PitCons.player1Color;
+			cornKernal = PitCons.player1CornKernal;
 			setAvailable(false);
 			break;
 		case 2:
 			squareColor = PitCons.player2Color;
+			cornKernal = PitCons.player2CornKernal;
 			setAvailable(false);
 			break;
 		default:
@@ -120,8 +102,8 @@ public class Vertex extends Point {
 		}
 	}
 
-	public void drawConnectingLines(Graphics page, Color color) {
-		page.setColor(color);
+	public void drawConnectingLines(Graphics page) {
+		page.setColor(lineColor);
 		if (left != null)
 			page.drawLine(x, y, left.x, left.y);
 		if (right != null)
@@ -130,18 +112,34 @@ public class Vertex extends Point {
 			page.drawLine(x, y, above.x, above.y);
 	}
 
-	public void drawSquare(Graphics page, int width) {
-		page.setColor(squareColor);
-		page.fillRect(x - width / 2, y - width / 2, width, width);
+	public void drawPieces(Graphics page, JPanel panel, int squareWidth) {
+		drawSquare(page, squareWidth);
+		if (player != 0)
+			drawCornKernal(page, panel, squareWidth);
 	}
 
-	public void highlightSquare(Graphics page, int width) {
+	private void drawCornKernal(Graphics page, JPanel panel, int squareWidth) {
+		int cornX = x - squareWidth / 2;
+		int cornY = y - squareWidth / 2;
+		page.drawImage(cornKernal.getImage(), cornX, cornY,
+				cornX + squareWidth, cornY + squareWidth, 0, 0,
+				cornKernal.getIconWidth(), cornKernal.getIconHeight(), panel);
+	}
+
+	private void drawSquare(Graphics page, int squareWidth) {
+		page.setColor(squareColor);
+		page.fillRect(x - squareWidth / 2, y - squareWidth / 2, squareWidth,
+				squareWidth);
+	}
+
+	public void highlight(Graphics page, int squareWidth) {
 		int playerNum = player;
-		clearSquare(page, width);
+		clearSquare(page, squareWidth);
 		squareColor = PitCons.squareHighlightColor;
-		drawSquare(page, width + 10);
+		drawSquare(page, squareWidth + 10);
 		setPlayer(playerNum);
-		drawSquare(page, width);
+		drawPieces(page, null, squareWidth);
+		// drawSquare(page, width);
 	}
 
 	public void clearSquare(Graphics page, int width) {
