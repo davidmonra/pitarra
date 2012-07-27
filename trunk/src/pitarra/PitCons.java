@@ -37,6 +37,9 @@ public final class PitCons {
 
 	// number of pieces
 	protected final static int initialNumberOfPieces = 12;
+	// lose more than maxPiecesYouCanLose and you lose the game
+	// (i.e. have to have at least 3 pieces to keep playing)
+	protected final static int maxPiecesYouCanLose = initialNumberOfPieces - 3;
 
 	// color constants
 	protected final static Color pyramidLineColor = Color.black;

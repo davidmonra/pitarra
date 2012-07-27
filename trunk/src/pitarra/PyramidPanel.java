@@ -113,6 +113,21 @@ public class PyramidPanel extends JPanel {
 					v.highlight(getGraphics(), squareWidth);
 	}
 
+	public boolean playerCanMove(int playerNumber) {
+		for (Vertex[] row : grid)
+			for (Vertex v : row)
+				if (v.getPlayer() == playerNumber
+						&& ((v.getAbove() != null && v.getAbove().isAvailable())
+								|| (v.getBelow() != null && v.getBelow()
+										.isAvailable())
+								|| (v.getLeft() != null && v.getLeft()
+										.isAvailable()) || (v.getRight() != null && v
+								.getRight().isAvailable())))
+					return true;
+
+		return false;
+	}
+
 	// private classes
 	private void setGridCoords() {
 		this.panelWidth = Math.min(getWidth(), getHeight());
