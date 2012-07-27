@@ -143,19 +143,27 @@ public class GamePanel extends JPanel {
 		} else { // traditional game
 			if (takePiece) {
 				takePieceFromBoard(startVertex);
+				if (pyramid.playerCantMove(otherPlayer)) {
+					notifyPlayer(otherPlayer, cantMoveMessage);
+					String message = "Player " + otherPlayer + cantMoveMessage;
+					showMessage(message, message);
+					notifyPlayer(currentPlayer, moveAgainMessage);
+					switchPlayer();
+				}
+
 			} else if (putPiece) {
 				putPieceOnBoard(startVertex, currentPlayer, otherPlayer);
 				switchPlayer();
 			} else if (movePiece) {
 				movePieceOnBoard(startVertex, endVertex, currentPlayer,
 						otherPlayer);
-				if (pyramid.playerCanMove(otherPlayer))
-					switchPlayer();
-				else {
+				if (pyramid.playerCantMove(otherPlayer)) {
 					notifyPlayer(otherPlayer, cantMoveMessage);
 					String message = "Player " + otherPlayer + cantMoveMessage;
 					showMessage(message, message);
 					notifyPlayer(currentPlayer, moveAgainMessage);
+				} else {
+					switchPlayer();
 				}
 
 			}
