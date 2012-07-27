@@ -40,7 +40,7 @@ public class SoundClipPlayer extends JFrame {
       }
    }
    
-   public void stop(){
+   public void stop(){//to stop it 
 	   sClip.stop();
    }
    
