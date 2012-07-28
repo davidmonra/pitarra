@@ -72,6 +72,9 @@ public final class PitCons {
 	protected final static String menuInstruction = "Instruction";
 	protected final static String menuResetGame = "Reset Game";
 	protected final static String menuAbout = "About";
+   
+  //facts
+  protected final static String[] facts = Utilities.readFilePerLine("Text Files/Facts.txt");
 
 	// sound constants
 	protected final static String sound1 = "Sound Files/Test.wav";
