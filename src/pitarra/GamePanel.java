@@ -31,6 +31,7 @@ public class GamePanel extends JPanel {
 	private PlayerPanel player1, player2;
 	private JLabel notifyText;
 	private Dimension windowSize;
+	private SoundClipPlayer[] sounds;
 
 	public GamePanel(ImageIcon backdrop) {
 		super();
@@ -64,6 +65,13 @@ public class GamePanel extends JPanel {
 		this.windowSize = new Dimension(
 				(int) PitCons.initialWindowSize.getWidth(),
 				(int) PitCons.initialWindowSize.getHeight());
+		this.sounds = new SoundClipPlayer[5];
+		this.sounds[0] = new SoundClipPlayer(PitCons.dropSound);
+		this.sounds[1] = new SoundClipPlayer(PitCons.moveSound);
+		this.sounds[2] = new SoundClipPlayer(PitCons.takeSound);
+		this.sounds[3] = new SoundClipPlayer(PitCons.winSound);
+		this.sounds[4] = new SoundClipPlayer(PitCons.highlightSound);
+
 		clearTakeNextPiece();
 
 		setLayout(new BorderLayout());
@@ -212,6 +220,7 @@ public class GamePanel extends JPanel {
 
 	private void putPieceOnBoard(Vertex v, int currentPlayer, int otherPlayer) {
 		v.setPlayer(currentPlayer);
+		playDropSound();
 		v.drawPieces(pyramid.getGraphics(), this, pyramid.getSquareWidth());
 		decrPiecesLeft(currentPlayer); // set the game piece counts
 		if (playerGot3inArow(currentPlayer, v)) { // is v in 3-in-a-row?
@@ -227,6 +236,7 @@ public class GamePanel extends JPanel {
 
 	private void movePieceOnBoard(Vertex v, Vertex newLocation,
 			int currentPlayer, int otherPlayer) {
+		playMoveSound();
 		v.clearSquare(pyramid.getGraphics(), pyramid.getSquareWidth());
 		newLocation.setPlayer(currentPlayer);
 		newLocation.drawPieces(pyramid.getGraphics(), this,
@@ -245,6 +255,7 @@ public class GamePanel extends JPanel {
 			return;
 		int playerNumber = getCurrentPlayerNumber();
 		v.setPlayer(playerNumber);
+		playDropSound();
 		v.drawPieces(pyramid.getGraphics(), this, pyramid.getSquareWidth());
 		decrPiecesLeft(playerNumber);
 		switchPlayer(); // next player's turn
@@ -306,6 +317,7 @@ public class GamePanel extends JPanel {
 	}
 
 	private void highlightPieces(int player) {
+		playHighlightSound();
 		// highlight pieces that can be removed
 		pyramid.highlightPlayerSquares(player);
 		// set remove piece flag
@@ -445,6 +457,7 @@ public class GamePanel extends JPanel {
 	}
 
 	public void takePiece(Vertex v) {
+		playTakeSound();
 		v.clearSquare(pyramid.getGraphics(), pyramid.getSquareWidth());
 		pyramid.paintComponent(pyramid.getGraphics());
 	}
@@ -490,6 +503,28 @@ public class GamePanel extends JPanel {
 
 		message += " is the winner!";
 		setNotifyText(message, color);
+		playWinSound();
 		showMessage(message, "Player " + playerNumber + " wins!");
 	}
+
+	public void playDropSound() {
+		sounds[0].play();
+	}
+
+	public void playMoveSound() {
+		sounds[1].play();
+	}
+
+	public void playTakeSound() {
+		sounds[2].play();
+	}
+
+	public void playWinSound() {
+		sounds[3].play();
+	}
+
+	public void playHighlightSound() {
+		sounds[4].play();
+	}
+
 }
