@@ -113,7 +113,7 @@ public class PyramidPanel extends JPanel {
 					v.highlight(getGraphics(), squareWidth);
 	}
 
-	public boolean playerCanMove(int playerNumber) {
+	public boolean playerCantMove(int playerNumber) {
 		for (Vertex[] row : grid)
 			for (Vertex v : row)
 				if (v.getPlayer() == playerNumber
@@ -123,9 +123,9 @@ public class PyramidPanel extends JPanel {
 								|| (v.getLeft() != null && v.getLeft()
 										.isAvailable()) || (v.getRight() != null && v
 								.getRight().isAvailable())))
-					return true;
+					return false;
 
-		return false;
+		return true;
 	}
 
 	// private classes
