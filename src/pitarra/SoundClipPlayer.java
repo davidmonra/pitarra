@@ -33,7 +33,7 @@ public class SoundClipPlayer extends JFrame {
 	   sClip.stop();
    }
    public void play(){//play it once
-	   sClip.loop(1);
+	   sClip.start();
    }
    public void playItForever(){//loop it 
 	   sClip.loop(Clip.LOOP_CONTINUOUSLY);
