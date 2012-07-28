@@ -113,6 +113,9 @@ public final class PitCons {
 			.readFile("Text Files/About Text.txt");
 	protected final static String basicInstructions = Utilities
 			.readFile("Text Files/Basic Instructions.txt");
+         
+         //facts from file constant
+        protected final static String[] facts = Utilities.readFilePerLine("Text Files/Facts.txt");
 
 	// Calculated size and position constants
 	// Don't change these. Change the "Scale" values above to change the sizes.
