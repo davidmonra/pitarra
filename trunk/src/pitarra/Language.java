@@ -15,13 +15,13 @@ public final class Language {
 	protected final static String menuGameEng = "Game";
 	protected final static String menuHelpEng = "Help";
 	protected final static String menuEnglishEng = "English";
-	protected final static String menuSpanishEng = "Español";
+	protected final static String menuSpanishEng = "EspaÃ±ol";
 	
 	protected final static String menuNewBegSpa = "Nuevo Juego de Principiante";
-	protected final static String menuNewTradSpa = "Juego Tradicional de Nueva";
+	protected final static String menuNewTradSpa = "Nuevo Juego de Tradicional";
 	protected final static String menuSoundSpa = "Sonido";
 	protected final static String menuExitSpa = "Salida";
-	protected final static String menuInstructionSpa = "Instrucción";
+	protected final static String menuInstructionSpa = "InstrucciÃ³n";
 	protected final static String menuResetGameSpa = "Restablecer Juego";
 	protected final static String menuAboutSpa = "Referencia";
 	protected final static String menuLanguageSpa = "Lengua";
@@ -29,7 +29,7 @@ public final class Language {
 	protected final static String menuGameSpa = "Juego";
 	protected final static String menuHelpSpa = "Ayuda";
 	protected final static String menuEnglishSpa = "English";
-	protected final static String menuSpanishSpa = "Español";
+	protected final static String menuSpanishSpa = "EspaÃ±ol";
 	
 	private Language(){
 	}
