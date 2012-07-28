@@ -31,6 +31,51 @@ public final class Utilities {
 			return null;
 		}
 	}
+   
+   public static final String[] readFilePerLine(String pathAndFilename) {
+            File file = new File(pathAndFilename);
+            final String separator = "---";
+            String forCompare = "";
+
+            if (file.canRead()) {
+                    Scanner scan, scanB;
+                    int c = 0;
+                    int lineNum = 0;
+
+                    try {
+                            scan = new Scanner(file);
+                            scanB = new Scanner(file);
+                    } catch (FileNotFoundException e) {
+                            return null;
+                    }
+                    
+                    while(scanB.hasNextLine()){
+                    	if(!scanB.nextLine().equals(separator)){
+                    		lineNum++;
+                    	}
+                    }
+                    
+                    String[] fileContents = new String[lineNum];
+                    for(int x = 0; x < lineNum; x++){
+                    	fileContents[x] = "";
+                    }
+
+                    while (scan.hasNextLine()){
+                    		forCompare = scan.nextLine();
+                            
+                            if(forCompare.equals(separator)){
+                            	fileContents[c] += "\n";
+                            	c++;
+                            }else{
+                            	fileContents[c] += forCompare;
+                            }
+                    }
+
+                    return fileContents;
+            } else {
+                    return null;
+            }
+    }
 
 	public static void drawBackdrop(Graphics page, ImageIcon backdrop,
 			int width, int height, JPanel panel) {
