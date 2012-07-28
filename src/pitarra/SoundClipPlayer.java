@@ -11,7 +11,6 @@ public class SoundClipPlayer extends JFrame {
 
 // Constructor
    public SoundClipPlayer(String soundFileName) {
-      this.setVisible(false);
       try {
          // Open an audio input stream.
     	 File soundFile = new File(soundFileName);
