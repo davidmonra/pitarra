@@ -16,12 +16,12 @@ public class Menu extends JMenuBar {
         private static final long serialVersionUID = -9120600991573125349L;
         private JMenuBar menuBar;
         private GamePanel gPanel;
-        private JMenu menuMain, menuGame, menuHelp, menuLang;
+        private JMenu menuMain, menuGame, menuHelp, menuLang, menuSound;
         private JMenuItem Exit, Instruction, ResetGame, About;
         // action listener for traditional game option, beginner game option, exit,
         // sound, and instructions
-        private ActionListener alTrad, alBeg, alEx, alSound, alInstruction, alAbout, alReset, alEng, alSpa;
-        private JCheckBoxMenuItem sound, NewTrad, NewBeg, langEng, langSpa;
+        private ActionListener alTrad, alBeg, alEx, alSound, alInstruction, alAbout, alReset, alEng, alSpa, alMusic;
+        private JCheckBoxMenuItem sound, NewTrad, NewBeg, langEng, langSpa, music;
         private ButtonGroup menuGroupGame, menuGroupLang;
 
         public Menu(GamePanel game) {
@@ -35,6 +35,7 @@ public class Menu extends JMenuBar {
                 this.menuGame = new JMenu(Language.menuGameEng);
                 this.menuHelp = new JMenu(Language.menuHelpEng);
                 this.menuLang = new JMenu(Language.menuLanguageEng);
+                this.menuSound = new JMenu(Language.menuSoundEng);
 
                 // menu items
                 this.NewBeg = new JCheckBoxMenuItem(Language.menuNewBegEng);
@@ -46,6 +47,7 @@ public class Menu extends JMenuBar {
                 this.About = new JMenuItem(Language.menuAboutEng);
                 this.langEng = new JCheckBoxMenuItem(Language.menuEnglishEng);
                 this.langSpa = new JCheckBoxMenuItem(Language.menuSpanishEng);
+                this.music = new JCheckBoxMenuItem(Language.menuMusicEng);
 
                 // menu grouping to make game mode mutually exclusive
                 this.menuGroupGame = new ButtonGroup();
@@ -60,6 +62,7 @@ public class Menu extends JMenuBar {
                 this.alReset = new ButtonActionResetGame();
                 this.alEng = new ButtonActionEnglish();
                 this.alSpa = new ButtonActionSpanish();
+                this.alMusic = new ButtonActionMusic();
 
                 this.NewTrad.addActionListener(alTrad);
                 this.NewBeg.addActionListener(alBeg);
@@ -70,6 +73,7 @@ public class Menu extends JMenuBar {
                 this.About.addActionListener(alAbout);
                 this.langEng.addActionListener(alEng);
                 this.langSpa.addActionListener(alSpa);
+                this.music.addActionListener(alMusic);
                 
                 setMenu();
         }
@@ -81,8 +85,9 @@ public class Menu extends JMenuBar {
         private void setMenu() {
                 menuBar.add(menuMain);
                 menuBar.add(menuGame);
-                menuBar.add(menuHelp);
+                menuBar.add(menuSound);
                 menuBar.add(menuLang);
+                menuBar.add(menuHelp);
 
                 menuGroupGame.add(NewTrad);
                 menuGroupGame.add(NewBeg);
@@ -94,10 +99,12 @@ public class Menu extends JMenuBar {
                 menuGame.add(NewBeg);
                 menuGame.add(NewTrad);
                 menuGame.addSeparator();
-                menuGame.add(sound);
-                menuGame.addSeparator();
                 menuGame.add(Instruction);
+                
+                menuSound.add(sound);
+                menuSound.add(music);
                 sound.setSelected(true);
+                music.setSelected(true);
                 
                 menuLang.add(langEng);
                 menuLang.add(langSpa);
@@ -165,6 +172,16 @@ public class Menu extends JMenuBar {
                         }
                 }
         }
+        
+        private class ButtonActionMusic implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+        	
+        }
 
         private class ButtonActionInstruction implements ActionListener {
 
@@ -183,6 +200,7 @@ public class Menu extends JMenuBar {
                 menuGame.setText(Language.menuGameEng);
                 menuHelp.setText(Language.menuHelpEng);
                 menuLang.setText(Language.menuLanguageEng);
+                menuSound.setText(Language.menuSoundEng);
                 
                 NewBeg.setText(Language.menuNewBegEng);
                 NewTrad.setText(Language.menuNewTradEng);
@@ -193,6 +211,17 @@ public class Menu extends JMenuBar {
                 About.setText(Language.menuAboutEng);
                 langEng.setText(Language.menuEnglishEng);
                 langSpa.setText(Language.menuSpanishEng);
+                music.setText(Language.menuMusicEng);
+                
+                /* ignore for now, language implementation for later
+                Language.playerString = Language.playerStringEng;
+                Language.playerStringAC = Language.playerStringACEng;
+                Language.pieceCountText = Language.pieceCountTextEng;
+                Language.pieceLostText = Language.pieceLostTextEng;
+                gPanel.getPlayer1().updateLabels();
+                gPanel.getPlayer2().updateLabels();
+                //System.out.print(Language.playerString);
+                */
 				
 			}
         	
@@ -206,6 +235,7 @@ public class Menu extends JMenuBar {
                 menuGame.setText(Language.menuGameSpa);
                 menuHelp.setText(Language.menuHelpSpa);
                 menuLang.setText(Language.menuLanguageSpa);
+                menuSound.setText(Language.menuSoundSpa);
                 
                 NewBeg.setText(Language.menuNewBegSpa);
                 NewTrad.setText(Language.menuNewTradSpa);
@@ -216,7 +246,17 @@ public class Menu extends JMenuBar {
                 About.setText(Language.menuAboutSpa);
                 langEng.setText(Language.menuEnglishSpa);
                 langSpa.setText(Language.menuSpanishSpa);
+                music.setText(Language.menuMusicSpa);
 	
+                /* ignore for now, language implementation for later
+                Language.playerString = Language.playerStringSpa;
+                Language.playerStringAC = Language.playerStringACSpa;
+                Language.pieceCountText = Language.pieceCountTextSpa;
+                Language.pieceLostText = Language.pieceLostTextSpa;
+                gPanel.getPlayer1().updateLabels();
+                gPanel.getPlayer2().updateLabels();
+                //System.out.print(Language.playerString);
+                */
 			}
         	
         }
