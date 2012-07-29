@@ -24,6 +24,7 @@ public class GamePanel extends JPanel {
 	private boolean isPlayer1Turn;
 	private boolean basicGame;
 	private boolean soundOn;
+	private boolean musicOn;
 	private boolean takeNextPiece; // if true, next piece clicked is removed
 	private int playerToRemove;
 	private int p1PiecesLeft, p2PiecesLeft, p1PiecesLost, p2PiecesLost;
@@ -42,6 +43,7 @@ public class GamePanel extends JPanel {
 				PitCons.pyramidLineColor, this);
 		this.basicGame = true;
 		this.soundOn = true;
+		this.musicOn = true;
 		this.takeNextPiece = false;
 		this.playerToRemove = 0;
 		this.eastPanel = new JPanel();
@@ -65,12 +67,13 @@ public class GamePanel extends JPanel {
 		this.windowSize = new Dimension(
 				(int) PitCons.initialWindowSize.getWidth(),
 				(int) PitCons.initialWindowSize.getHeight());
-		this.sounds = new SoundClipPlayer[5];
+		this.sounds = new SoundClipPlayer[6];
 		this.sounds[0] = new SoundClipPlayer(PitCons.dropSound);
 		this.sounds[1] = new SoundClipPlayer(PitCons.moveSound);
 		this.sounds[2] = new SoundClipPlayer(PitCons.takeSound);
 		this.sounds[3] = new SoundClipPlayer(PitCons.winSound);
 		this.sounds[4] = new SoundClipPlayer(PitCons.highlightSound);
+		this.sounds[5] = new SoundClipPlayer(PitCons.backgroundMusic);
 
 		clearTakeNextPiece();
 
@@ -102,6 +105,7 @@ public class GamePanel extends JPanel {
 		add(northPanel, BorderLayout.NORTH);
 
 		notifyPlayer(getCurrentPlayerNumber(), placePieceMessage);
+		playBackgroundSound(true);
 	}
 
 	public void resetGame() {
@@ -115,6 +119,7 @@ public class GamePanel extends JPanel {
 		this.pyramid.resetPyramid();
 		clearTakeNextPiece();
 		notifyPlayer(getCurrentPlayerNumber(), placePieceMessage);
+		playBackgroundSound(true);
 	}
 
 	public void paintComponent(Graphics page) {
@@ -442,6 +447,14 @@ public class GamePanel extends JPanel {
 		this.soundOn = soundOn;
 	}
 
+	public boolean isMusicOn() {
+		return musicOn;
+	}
+
+	public void setMusicOn(boolean musicOn) {
+		this.musicOn = musicOn;
+	}
+
 	public void setNotifyText(String message, Color color) {
 		this.notifyText.setForeground(color);
 		this.notifyText.setText(message);
@@ -503,28 +516,40 @@ public class GamePanel extends JPanel {
 
 		message += " is the winner!";
 		setNotifyText(message, color);
+		playBackgroundSound(false);
 		playWinSound();
 		showMessage(message, "Player " + playerNumber + " wins!");
 	}
 
 	public void playDropSound() {
-		sounds[0].play();
+		if (soundOn)
+			sounds[0].play();
 	}
 
 	public void playMoveSound() {
-		sounds[1].play();
+		if (soundOn)
+			sounds[1].play();
 	}
 
 	public void playTakeSound() {
-		sounds[2].play();
+		if (soundOn)
+			sounds[2].play();
 	}
 
 	public void playWinSound() {
-		sounds[3].play();
+		if (soundOn)
+			sounds[3].play();
 	}
 
 	public void playHighlightSound() {
-		sounds[4].play();
+		if (soundOn)
+			sounds[4].play();
 	}
 
+	public void playBackgroundSound(boolean play) {
+		if (soundOn && musicOn && play)
+			sounds[5].play();
+		else
+			sounds[5].stop();
+	}
 }
