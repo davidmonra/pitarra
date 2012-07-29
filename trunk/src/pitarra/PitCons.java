@@ -79,6 +79,7 @@ public final class PitCons {
 	protected final static String takeSound = "Sound Files/recycle.wav";
 	protected final static String winSound = "Sound Files/tada.wav";
 	protected final static String highlightSound = "Sound Files/windows xp pop-up blocked.wav";
+	protected final static String backgroundMusic = "Sound Files/music-pitarra-1.wav";
 
 	// image icons
 	// Change the .jpg image files in the icons folder to change the backdrops.
@@ -113,9 +114,10 @@ public final class PitCons {
 			.readFile("Text Files/About Text.txt");
 	protected final static String basicInstructions = Utilities
 			.readFile("Text Files/Basic Instructions.txt");
-         
-         //facts from file constant
-        protected final static String[] facts = Utilities.readFilePerLine("Text Files/Facts.txt");
+
+	// facts from file constant
+	protected final static String[] facts = Utilities
+			.readFilePerLine("Text Files/Facts.txt");
 
 	// Calculated size and position constants
 	// Don't change these. Change the "Scale" values above to change the sizes.
