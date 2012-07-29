@@ -79,7 +79,7 @@ public final class PitCons {
 	protected final static String takeSound = "Sound Files/recycle.wav";
 	protected final static String winSound = "Sound Files/tada.wav";
 	protected final static String highlightSound = "Sound Files/windows xp pop-up blocked.wav";
-	protected final static String backgroundMusic = "Sound Files/music-pitarra-1.wav";
+	protected final static String backgroundMusic = "Sound Files/music-pitarra-1-short.wav";
 
 	// image icons
 	// Change the .jpg image files in the icons folder to change the backdrops.

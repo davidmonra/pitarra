@@ -186,10 +186,11 @@ public class GamePanel extends JPanel {
 
 	// win conditions for traditional game
 	private void checkForEndOfGame() {
-		// tie game: no pieces left and no one lost pieces
+		// tie traditional game: no pieces left and no one lost pieces
 		if (p1PiecesLeft == 0 && p2PiecesLeft == 0 && p1PiecesLost == 0
 				&& p2PiecesLost == 0) {
 			setNotifyText(tieGameMessage, Color.blue);
+			playBackgroundSound(false);
 			showMessage(tieGameMessage, tieGameMessage);
 			resetGame();
 			return;
@@ -198,6 +199,7 @@ public class GamePanel extends JPanel {
 		if (p1PiecesLeft == 0 && p2PiecesLeft == 0
 				&& p2PiecesLost > PitCons.maxPiecesYouCanLose
 				&& p1PiecesLost > 0) {
+
 			weGotWinner(1);
 			resetGame();
 			return;
@@ -269,6 +271,15 @@ public class GamePanel extends JPanel {
 		if (winner != 0) {
 			weGotWinner(winner);
 			resetGame();
+			return;
+		}
+		// check for tie game: no pieces left
+		if (basicGame && p1PiecesLeft == 0 && p2PiecesLeft == 0) {
+			setNotifyText(tieGameMessage, Color.blue);
+			playBackgroundSound(false);
+			showMessage(tieGameMessage, tieGameMessage);
+			resetGame();
+			return;
 		}
 	}
 
@@ -548,7 +559,7 @@ public class GamePanel extends JPanel {
 
 	public void playBackgroundSound(boolean play) {
 		if (soundOn && musicOn && play)
-			sounds[5].play();
+			sounds[5].playItForever();
 		else
 			sounds[5].stop();
 	}
