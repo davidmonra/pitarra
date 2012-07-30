@@ -21,8 +21,12 @@ L.- Client Meeting on 7/30 at 6pm.
 
 MAG- Finish up win scenario.
 
+JS- Save current version on Google Code. Finish drag-n-drop.
+
 *Are there any impediments in your way?*
 
 L.- My Java still needs work.
 
 MAG- Nothing really for me
+
+JS- No.
