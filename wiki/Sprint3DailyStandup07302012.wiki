@@ -13,6 +13,8 @@ L.- Created Sprint 3 Backlog.
 
 MAG- Added the win scenario to the game.
 
+JS- Worked on true drag-n-drop: dragging from corn pile across screen to pyramid.
+
 *What will you do today?*
 
 L.- Client Meeting on 7/30 at 6pm.
