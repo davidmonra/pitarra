@@ -30,19 +30,31 @@ public class SoundClipPlayer extends JFrame {
    }
    
    public void stop(){//to stop it 
-	   sClip.stop();
+	    try {
+           sClip.stop();
+	   }catch (NullPointerException e) {
+	         System.out.println("sound error 4");
+	   }
    }
    public void play(){//play it once
-	   if(sClip.isRunning())
-   			sClip.stop();
-	   sClip.setFramePosition(0);
-		 sClip.start();
+	   try {
+           if(sClip.isRunning())
+                        sClip.stop();
+           sClip.setFramePosition(0);
+                 sClip.start();
+	   }catch (NullPointerException e) {
+         System.out.println("sound error 4");
+     }
    }
    public void playItForever(){//loop it 
-     if(sClip.isRunning())
-   			sClip.stop();
-	   sClip.setFramePosition(0);
-	   sClip.loop(Clip.LOOP_CONTINUOUSLY);
+      try {
+          if(sClip.isRunning())
+                        sClip.stop();
+           sClip.setFramePosition(0);
+           sClip.loop(Clip.LOOP_CONTINUOUSLY);
+     }catch (NullPointerException e) {
+       System.out.println("sound error 4");
    }
-   
+     
+   }  
 }
