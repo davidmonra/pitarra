@@ -1,0 +1,20 @@
+#summary Sprint3 Daily Standup 07/30/2012
+
+= Introduction =
+
+Sprint3 Daily Standup 07/30/2012
+
+
+= Details =
+
+*What did you do yesterday?*
+
+L.- Created Sprint 3 Backlog.
+
+*What will you do today?*
+
+L.- Client Meeting on 7/30 at 6pm.
+
+*Are there any impediments in your way?*
+
+L.- My Java still needs work.
