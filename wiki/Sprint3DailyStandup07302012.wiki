@@ -15,7 +15,7 @@ MAG- Added the win scenario to the game.
 
 JS- Worked on true drag-n-drop: dragging from corn pile across screen to pyramid.
 
-PHP- slay some dragons, joined the thief guild and develop language support
+PHP- slayed some dragons, joined the thief guild and develop language support
 
 *What will you do today?*
 
