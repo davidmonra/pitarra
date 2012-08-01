@@ -13,14 +13,20 @@ L.- Had client meeting on 07/30/2012.
 
 PHP- implement the language support
 
+MAG- Added new graphics to the board game to make it look more realistic. 
+
 *What will you do today?*
 
 L.- Rewrite sprint backlog and update product backlog, code concede match Gui.
 
 PHP- polish and perfect the language support
 
+MAG-Adjusting the graphics or helping other members. 
+
 *Are there any impediments in your way?*
 
 L.- Java coding skills.
 
 PHP- has the client sent us the translation back? no? oh well...
+
+MAG- Waiting for client to give use more information.
