@@ -17,6 +17,8 @@ MAG- Added new graphics to the board game to make it look more realistic.
 
 JS- Worked on cross panel drag-n-drop.
 
+JL - find something new to work on
+
 
 *What will you do today?*
 
@@ -28,6 +30,8 @@ MAG-Adjusting the graphics or helping other members.
 
 JS- Work on cross panel drag-n-drop.
 
+JL - rip sound from the provided dvds
+
 
 *Are there any impediments in your way?*
 
@@ -38,3 +42,5 @@ PHP- has the client sent us the translation back? no? oh well...
 MAG- Waiting for client to give use more information.
 
 JS- Need to read up on glass-pane useage and possibly clips in Java.
+
+JL - not really, might have issues ripping sound from dvd not sure at this point
