@@ -11,10 +11,16 @@ Sprint 3 Daily Standup (08/01/2012)
 
 L.- Had client meeting on 07/30/2012.
 
+PHP- implement the language support
+
 *What will you do today?*
 
 L.- Rewrite sprint backlog and update product backlog, code concede match Gui.
 
+PHP- polish and perfect the language support
+
 *Are there any impediments in your way?*
 
 L.- Java coding skills.
+
+PHP- has the client sent us the translation back? no? oh well...
