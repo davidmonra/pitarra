@@ -31,7 +31,7 @@ public class PlayerPanel extends JPanel {
                 this.titleLabel = new JLabel(Language.playerStringAC + playerNumber, JLabel.CENTER);
                 this.nameLabel = new JLabel(Language.nameFieldPrompt, JLabel.CENTER);
 				this.numWins = new JLabel(Language.numWinsText+gPanel.getNumWins(playerNumber),JLabel.CENTER);
-                this.piecesLeft = new JLabel(gPanel.getPiecesLeft(playerNumber)
+                this.piecesLeft = new JLabel(Language.pieceCountTextPrefix + gPanel.getPiecesLeft(playerNumber)
                                 + Language.pieceCountText, JLabel.CENTER);
                 this.piecesLost = new JLabel(gPanel.getPiecesLost(playerNumber)
                                 + Language.pieceLostText, JLabel.CENTER);
@@ -86,7 +86,7 @@ public class PlayerPanel extends JPanel {
 		
 		public void updateLabels(){
         	titleLabel.setText(Language.playerStringAC + " " + pNum);
-        	piecesLeft.setText(gPanel.getPiecesLeft(pNum) + Language.pieceCountText);
+        	piecesLeft.setText(Language.pieceCountTextPrefix + gPanel.getPiecesLeft(pNum) + Language.pieceCountText);
         	piecesLost.setText(gPanel.getPiecesLost(pNum) + Language.pieceLostText);
         	if(!nameLock){
         		nameLabel.setText(Language.nameFieldPrompt);
@@ -133,7 +133,7 @@ public class PlayerPanel extends JPanel {
         }
 
         public void setPiecesLeft(int pieceCount) {
-                this.piecesLeft.setText(pieceCount + Language.pieceCountText);
+                this.piecesLeft.setText(Language.pieceCountTextPrefix + pieceCount + Language.pieceCountText);
         }
 
         public void setPiecesLost(int piecesLost) {
