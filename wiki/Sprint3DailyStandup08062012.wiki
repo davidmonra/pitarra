@@ -17,6 +17,7 @@ MAG-Went to austin for my bday lol. on a serious note i completed the player pan
 
 JS- Planned drop-n-drag implementation across multiple JPanes
 
+JL- Ripped sound from provided DVDs
 
 *What will you do today?*
 
@@ -28,6 +29,7 @@ MAG- Try and make a good background for the whole game
 
 JS- Start drop-n-drag implementation across multiple JPanes
 
+JL-come up with a way to cycle BG music
 
 *Are there any impediments in your way?*
 
@@ -38,3 +40,5 @@ PHP- i don't know...probably not.
 MAG- At this point nothing really or nothing i can think of
 
 JS- No.
+
+JL- nah
