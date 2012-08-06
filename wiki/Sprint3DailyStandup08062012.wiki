@@ -13,14 +13,20 @@ L.- Rewrote backlog, started java coding, received music, started user manual.
 
 PHP- oh i don't know, just chillin'. what did you do yesterday? lol just kidding. i fixed the bug of resetting the score and whatnot. updated the code for the language support, etc. also i stitched together the current code from everybody.
 
+MAG-Went to austin for my bday lol. on a serious note i completed the player panel graphics and the game panel graphics
+
 *What will you do today?*
 
 L.- Get backlog ready for turn in, finish java coding, continue user manual.
 
 PHP- doing the same thing. i still need to fix the final language support
 
+MAG- Try and make a good background for the whole game
+
 *Are there any impediments in your way?*
 
 L.- Still struggling with java code.
 
 PHP- i don't know...probably not.
+
+MAG- At this point nothing really or nothing i can think of
