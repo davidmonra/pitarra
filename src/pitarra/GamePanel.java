@@ -103,9 +103,9 @@ public class GamePanel extends JPanel {
                 add(northPanel, BorderLayout.NORTH);
 
                 if(lang){
-                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessage);
+                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessage, 0);
                 }else{
-                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessageSpa);
+                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessageSpa, 1);
                 }
 				
                 playBackgroundSound(true);
@@ -133,6 +133,18 @@ public class GamePanel extends JPanel {
         		p2Wins = 0;
         	}
         }
+        
+        public void concedeGame(){
+        	if (isPlayer1Turn){
+        		p2Wins++;
+        		player2.updateLabels();
+        	}
+        	else{
+        		p1Wins++;
+        		player1.updateLabels();
+        	}
+        	resetGame();
+        }
 
         public void resetGame() {
                 this.player1.reset(basicGame);
@@ -145,9 +157,9 @@ public class GamePanel extends JPanel {
                 this.pyramid.resetPyramid();
                 clearTakeNextPiece();
                 if(lang){
-                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessage);
+                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessage, 0);
                 }else{
-                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessageSpa);
+                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessageSpa, 1);
                 }
                 playBackgroundSound(true);
         }
@@ -189,17 +201,17 @@ public class GamePanel extends JPanel {
                                 if (pyramid.playerCantMove(otherPlayer)) {
                                 	String message;
                                 	if(lang){
-                                		notifyPlayer(otherPlayer, Language.cantMoveMessage);
+                                		notifyPlayer(otherPlayer, Language.cantMoveMessage, 0);
                                         message = "Player " + otherPlayer + Language.cantMoveMessage;
                                 	}else{
-                                		notifyPlayer(otherPlayer, Language.cantMoveMessageSpa);
+                                		notifyPlayer(otherPlayer, Language.cantMoveMessageSpa, 0);
                                         message = "Jugador " + otherPlayer + Language.cantMoveMessageSpa;
                                 	}
                                         showMessage(message, message);
                                     if(lang){
-                                        notifyPlayer(currentPlayer, Language.moveAgainMessage);
+                                        notifyPlayer(currentPlayer, Language.moveAgainMessage, 0);
                                     }else{
-                                    	notifyPlayer(currentPlayer, Language.moveAgainMessageSpa);
+                                    	notifyPlayer(currentPlayer, Language.moveAgainMessageSpa, 0);
                                     }
                                         switchPlayer();
                                 }
@@ -213,17 +225,17 @@ public class GamePanel extends JPanel {
                                 if (pyramid.playerCantMove(otherPlayer)) {
                                 	String message;
                                 	if(lang){
-                                		notifyPlayer(otherPlayer, Language.cantMoveMessage);
+                                		notifyPlayer(otherPlayer, Language.cantMoveMessage, 0);
                                         message = "Player " + otherPlayer + Language.cantMoveMessage;
                                 	}else{
-                                		notifyPlayer(otherPlayer, Language.cantMoveMessageSpa);
+                                		notifyPlayer(otherPlayer, Language.cantMoveMessageSpa, 0);
                                         message = "Jugador " + otherPlayer + Language.cantMoveMessageSpa;
                                 	}
                                         showMessage(message, message);
                                     if(lang){
-                                    	notifyPlayer(currentPlayer, Language.moveAgainMessage);
+                                    	notifyPlayer(currentPlayer, Language.moveAgainMessage, 0);
                                     }else{
-                                    	notifyPlayer(currentPlayer, Language.moveAgainMessageSpa);
+                                    	notifyPlayer(currentPlayer, Language.moveAgainMessageSpa, 0);
                                     }
                                 } else {
                                         switchPlayer();
@@ -276,16 +288,16 @@ public class GamePanel extends JPanel {
                 incrPiecesLost(playerToRemove);
                 if (getPiecesLeft(playerToRemove) > 0){
                 	if(lang){
-                    	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessage);
+                    	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessage, 0);
                     }else{
-                    	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessageSpa);
+                    	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessageSpa, 1);
                     }
                 }
                 else{
                 	if(lang){
-                		notifyPlayer(playerToRemove, Language.movePieceMessage);
+                		notifyPlayer(playerToRemove, Language.movePieceMessage, 0);
                 	}else{
-                		notifyPlayer(playerToRemove, Language.movePieceMessageSpa);
+                		notifyPlayer(playerToRemove, Language.movePieceMessageSpa, 0);
                 	}
                         
                 }
@@ -300,22 +312,22 @@ public class GamePanel extends JPanel {
                 if (playerGot3inArow(currentPlayer, v)) { // is v in 3-in-a-row?
                         highlightPieces(otherPlayer);
                         if(lang){
-                        	notifyPlayer(currentPlayer, Language.takePieceMessage);
+                        	notifyPlayer(currentPlayer, Language.takePieceMessage, 0);
                         }else{
-                        	notifyPlayer(currentPlayer, Language.takePieceMessageSpa);
+                        	notifyPlayer(currentPlayer, Language.takePieceMessageSpa, 0);
                         }
                 } else {
                         if (getPiecesLeft(otherPlayer) > 0){
                         	if(lang){
-                                notifyPlayer(otherPlayer, Language.placePieceMessage);
+                                notifyPlayer(otherPlayer, Language.placePieceMessage, 0);
                         	}else{
-                        		notifyPlayer(otherPlayer, Language.placePieceMessageSpa);
+                        		notifyPlayer(otherPlayer, Language.placePieceMessageSpa, 1);
                         	}
                         }else{
                         	if(lang){
-                                notifyPlayer(otherPlayer, Language.movePieceMessage);
+                                notifyPlayer(otherPlayer, Language.movePieceMessage, 0);
                         	}else{
-                        		notifyPlayer(otherPlayer, Language.movePieceMessageSpa);
+                        		notifyPlayer(otherPlayer, Language.movePieceMessageSpa, 0);
                         	}
                         }
                 }
@@ -331,15 +343,15 @@ public class GamePanel extends JPanel {
                 if (playerGot3inArow(currentPlayer, newLocation)) {
                     highlightPieces(otherPlayer);
                     if(lang){
-                        notifyPlayer(currentPlayer, Language.takePieceMessage);
+                        notifyPlayer(currentPlayer, Language.takePieceMessage, 0);
                     }else{
-                        notifyPlayer(currentPlayer, Language.takePieceMessageSpa);
+                        notifyPlayer(currentPlayer, Language.takePieceMessageSpa, 0);
                     }
                 } else {
                     if(lang){
-                		notifyPlayer(otherPlayer, Language.movePieceMessage);
+                		notifyPlayer(otherPlayer, Language.movePieceMessage, 0);
                 	}else{
-                        notifyPlayer(otherPlayer, Language.movePieceMessageSpa);
+                        notifyPlayer(otherPlayer, Language.movePieceMessageSpa, 0);
                 	}
                 }
         }
@@ -355,9 +367,9 @@ public class GamePanel extends JPanel {
                 decrPiecesLeft(playerNumber);
                 switchPlayer(); // next player's turn
                 if(lang){
-                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessage);
+                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessage, 0);
                 }else{
-                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessageSpa);
+                	notifyPlayer(getCurrentPlayerNumber(), Language.placePieceMessageSpa, 1);
                 }
                 int winner = checkWin();
                 if (winner != 0) {
@@ -438,13 +450,20 @@ public class GamePanel extends JPanel {
                 setTakeNextPiece(true, player);
         }
 
-        private void notifyPlayer(int player, String message) {
-                if (player == 1)
-                        setNotifyText(player1.getPlayerName() + message,
-                                        PitCons.player1Color);
-                else
-                        setNotifyText(player2.getPlayerName() + message,
-                                        PitCons.player2Color);
+        private void notifyPlayer(int player, String message, int code) {
+        	if(code == 0){
+                if (player == 1){
+                	setNotifyText(player1.getPlayerName() + message,PitCons.player1Color);
+                }else{
+                	setNotifyText(player2.getPlayerName() + message,PitCons.player2Color);
+                }
+        	}else if(code == 1){
+        		if (player == 1){
+                	setNotifyText(message + player1.getPlayerName(),PitCons.player1Color);
+                }else{
+                	setNotifyText(message + player2.getPlayerName(),PitCons.player2Color);
+                }
+        	}
         }
 
         // checks if Vertex v is part of a 3-in-a-row for the current player
@@ -660,7 +679,7 @@ public class GamePanel extends JPanel {
                 if(lang){
                 	showMessage(message, "Player " + playerNumber + Language.winStringTitle);
                 }else{
-                	showMessage(message, "Jugador " + playerNumber + Language.winStringTitleSpa);
+                	showMessage(message, Language.winStringTitleSpa + "jugado " + playerNumber);
                 }
         }
 
