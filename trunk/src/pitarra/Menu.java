@@ -17,11 +17,11 @@ public class Menu extends JMenuBar {
         private JMenuBar menuBar;
         private GamePanel gPanel;
         private JMenu menuMain, menuGame, menuHelp, menuLang, menuSound;
-        private JMenuItem Exit, Instruction, ResetGame, About;
+        private JMenuItem Exit, Instruction, ResetGame, About, Concede;
         // action listener for traditional game option, beginner game option, exit,
         // sound, and instructions
         private ActionListener alTrad, alBeg, alEx, alSound, alInstruction,
-                        alAbout, alReset, alEng, alSpa, alMusic;
+                        alAbout, alReset, alEng, alSpa, alMusic, alConcede;
         private JCheckBoxMenuItem sound, NewTrad, NewBeg, langEng, langSpa, music;
         private ButtonGroup menuGroupGame, menuGroupLang;
         private boolean lang;
@@ -51,6 +51,7 @@ public class Menu extends JMenuBar {
                 this.langEng = new JCheckBoxMenuItem(Language.menuEnglishEng);
                 this.langSpa = new JCheckBoxMenuItem(Language.menuSpanishEng);
                 this.music = new JCheckBoxMenuItem(Language.menuMusicEng);
+                this.Concede = new JMenuItem(Language.concedeStringEng);
 
                 // menu grouping to make game mode mutually exclusive
                 this.menuGroupGame = new ButtonGroup();
@@ -66,6 +67,7 @@ public class Menu extends JMenuBar {
                 this.alEng = new ButtonActionEnglish();
                 this.alSpa = new ButtonActionSpanish();
                 this.alMusic = new ButtonActionMusic();
+                this.alConcede = new ButtonActionConcede();
 
                 this.NewTrad.addActionListener(alTrad);
                 this.NewBeg.addActionListener(alBeg);
@@ -77,6 +79,7 @@ public class Menu extends JMenuBar {
                 this.langEng.addActionListener(alEng);
                 this.langSpa.addActionListener(alSpa);
                 this.music.addActionListener(alMusic);
+                this.Concede.addActionListener(alConcede);
                 
                 this.lang = true;
                 
@@ -87,7 +90,7 @@ public class Menu extends JMenuBar {
                 				"Lin D. \"The Master\" Wyeth\n" + 
                 				"Matthew \"The Artist\" Gamble\n" + 
                 				"Jesse \"The Sound Creator\" Leija\n" + 
-                				"Jerry \"The Most Important\" Swank\n" + 
+                				"Jerry \"The Guardian of Code\" Swank\n" + 
                 				"Priya \"The King of Kings\" Pramesi";
                 this.aboutStringSpa = "Pitarra Ver 0.2" + 
 								"\n\n" + 
@@ -96,7 +99,7 @@ public class Menu extends JMenuBar {
 								"Lin D. \"El Maestro\" Wyeth\n" + 
 								"Matthew \"El Artista\" Gamble\n" + 
 								"Jesse \"El Creador de Sonido\" Leija\n" + 
-								"Jerry \"El Más Importante\" Swank\n" + 
+								"Jerry \"El Guardián de Código\" Swank\n" + 
 								"Priya \"El Rey de Reyes\" Pramesi";
 
                 setMenu();
@@ -122,6 +125,8 @@ public class Menu extends JMenuBar {
 
                 menuGame.add(NewBeg);
                 menuGame.add(NewTrad);
+                menuGame.addSeparator();
+                menuGame.add(Concede);
                 menuGame.addSeparator();
                 menuGame.add(Instruction);
 
@@ -225,6 +230,14 @@ public class Menu extends JMenuBar {
                         gPanel.showInstructions(lang);
                 }
         }
+        
+        private class ButtonActionConcede implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    gPanel.concedeGame();
+            }
+		}
 
         private class ButtonActionEnglish implements ActionListener {
 
@@ -247,6 +260,7 @@ public class Menu extends JMenuBar {
                         langEng.setText(Language.menuEnglishEng);
                         langSpa.setText(Language.menuSpanishEng);
                         music.setText(Language.menuMusicEng);
+                        Concede.setText(Language.concedeStringEng);
                         
                         lang = true;
                         
@@ -256,6 +270,7 @@ public class Menu extends JMenuBar {
                         Language.pieceLostText = Language.pieceLostTextEng;
                         Language.nameFieldPrompt = Language.nameFieldPromptEng;
                         Language.numWinsText = Language.numWinsTextEng;
+                        Language.pieceCountTextPrefix = Language.pieceCountTextPreficEng;
                         gPanel.getPlayer1().updateLabels();
                         gPanel.getPlayer2().updateLabels();
                         gPanel.setLang(true);
@@ -284,6 +299,7 @@ public class Menu extends JMenuBar {
                         langEng.setText(Language.menuEnglishSpa);
                         langSpa.setText(Language.menuSpanishSpa);
                         music.setText(Language.menuMusicSpa);
+                        Concede.setText(Language.concedeStringSpa);
                         
                         lang = false;
                         
@@ -293,6 +309,7 @@ public class Menu extends JMenuBar {
                         Language.pieceLostText = Language.pieceLostTextSpa;
                         Language.nameFieldPrompt = Language.nameFieldPromptSpa;
                         Language.numWinsText = Language.numWinsTextSpa;
+                        Language.pieceCountTextPrefix = Language.pieceCountTextPreficSpa;
                         gPanel.getPlayer1().updateLabels();
                         gPanel.getPlayer2().updateLabels();
                         gPanel.setLang(false);
