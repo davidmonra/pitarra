@@ -1,0 +1,20 @@
+#summary Sprint 3 Daily Standup (08/06/2012)
+
+= Introduction =
+
+Sprint 3 Daily Standup (08/06/2012)
+
+
+= Details =
+
+*What did you do yesterday?*
+
+L.- Rewrote backlog, started java coding, received music, started user manual.
+
+*What will you do today?*
+
+L.- Get backlog ready for turn in, finish java coding, continue user manual.
+
+*Are there any impediments in your way?*
+
+L.- Still struggling with java code.
