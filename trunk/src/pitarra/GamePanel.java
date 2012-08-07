@@ -709,7 +709,7 @@ public class GamePanel extends JPanel {
         }
 
         public void playBackgroundSound(boolean play) {
-                if (soundOn && musicOn && play)
+                if (musicOn && play)
                         sounds[5].playItForever();
                 else
                         sounds[5].stop();
