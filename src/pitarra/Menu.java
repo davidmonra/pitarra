@@ -200,10 +200,10 @@ public class Menu extends JMenuBar {
                 public void actionPerformed(ActionEvent arg0) {
                         if (gPanel.isSoundOn()) {
                                 gPanel.setSoundOn(false);
-                                gPanel.playBackgroundSound(false);
+//                                gPanel.playBackgroundSound(false);
                         } else {
                                 gPanel.setSoundOn(true);
-                                gPanel.playBackgroundSound(true);
+//                                gPanel.playBackgroundSound(true);
                         }
                 }
         }
