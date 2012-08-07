@@ -7,7 +7,7 @@ public final class Language {
         protected final static String menuNewTradEng = "New Traditional Game";
         protected final static String menuSoundEng = "Sound";
         protected final static String menuExitEng = "Exit";
-        protected final static String menuInstructionEng = "Instruction";
+        protected final static String menuInstructionEng = "Instructions";
         protected final static String menuResetGameEng = "Reset Game";
         protected final static String menuAboutEng = "About";
         protected final static String menuLanguageEng = "Languages";
