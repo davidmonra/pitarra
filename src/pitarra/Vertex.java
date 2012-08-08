@@ -9,38 +9,80 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Vertex extends Point {
-	private boolean isAvailable;
-	private boolean isCornerVertex;
-	private int player;
-	private Color squareColor, lineColor;
+	private boolean available;
+	private boolean cornerVertex;
+	private boolean showSquares, showCornKernals, showGridLines;
+	private boolean highlighted;
+	private int playerNumber;
+	private int squareWidth;
+	private Color shapeColor, lineColor, shapeClearColor, shapeHighlightColor;
+	private Color player1Color, player2Color;
 	private Vertex left, right, above, below; // adjacent vertices
-	private ImageIcon cornKernal;
+	private ImageIcon player1Ccorn, player2Ccorn;
 
-	public Vertex(boolean isCornerVertex) {
+	public Vertex(boolean isCornerVertex, boolean showSquares,
+			boolean showGridLines, boolean showCornKernals, int squareWidth,
+			Color lineColor, Color shapeClearColor, Color shapeHighlightColor,
+			Color player1Color, Color player2Color, ImageIcon player1Ccorn,
+			ImageIcon player2Ccorn) {
 		super();
-		setLocation(0, 0);
-		this.isAvailable = true;
-		this.isCornerVertex = isCornerVertex;
-		this.player = 0;
-		this.squareColor = PitCons.squareClearColor;
-		this.lineColor = PitCons.pyramidLineColor;
+		this.available = true;
+		this.cornerVertex = isCornerVertex;
+		this.showSquares = showSquares;
+		this.showCornKernals = showCornKernals;
+		this.showGridLines = showGridLines;
+		this.highlighted = false;
+		this.playerNumber = 0;
+		this.squareWidth = squareWidth;
+		this.lineColor = lineColor;
+		this.shapeClearColor = shapeClearColor;
+		this.shapeHighlightColor = shapeHighlightColor;
+		this.shapeColor = shapeClearColor;
+		this.player1Color = player1Color;
+		this.player2Color = player2Color;
 		this.left = null;
 		this.right = null;
 		this.above = null;
 		this.below = null;
-		this.cornKernal = new ImageIcon();
+		this.player1Ccorn = player1Ccorn;
+		this.player2Ccorn = player2Ccorn;
+		setLocation(0, 0);
 	}
 
 	public boolean isAvailable() {
-		return isAvailable;
+		return available;
 	}
 
 	public void setAvailable(boolean available) {
-		this.isAvailable = available;
+		this.available = available;
 	}
 
 	public boolean isCornerVertex() {
-		return isCornerVertex;
+		return cornerVertex;
+	}
+
+	public boolean isHighlighted() {
+		return highlighted;
+	}
+
+	public void setHighlighted(boolean highlighted) {
+		this.highlighted = highlighted;
+	}
+
+	public int getPlayerNumber() {
+		return playerNumber;
+	}
+
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
+	}
+
+	public int getSquareWidth() {
+		return squareWidth;
+	}
+
+	public void setSquareWidth(int squareWidth) {
+		this.squareWidth = squareWidth;
 	}
 
 	public Vertex getLeft() {
@@ -75,76 +117,86 @@ public class Vertex extends Point {
 		this.below = below;
 	}
 
-	public int getPlayer() {
-		return player;
-	}
-
-	public void setLineColor(Color lineColor) {
-		this.lineColor = lineColor;
-	}
-
 	public void setPlayer(int player) {
-		this.player = player;
+		this.playerNumber = player;
 		switch (player) {
 		case 1:
-			squareColor = PitCons.player1Color;
-			cornKernal = PitCons.player1CornKernal;
+			shapeColor = player1Color;
 			setAvailable(false);
 			break;
 		case 2:
-			squareColor = PitCons.player2Color;
-			cornKernal = PitCons.player2CornKernal;
+			shapeColor = player2Color;
 			setAvailable(false);
 			break;
 		default:
-			squareColor = PitCons.squareClearColor;
+			shapeColor = shapeClearColor;
 			setAvailable(true);
 		}
 	}
 
 	public void drawConnectingLines(Graphics page) {
-		page.setColor(lineColor);
-		if (left != null)
-			page.drawLine(x, y, left.x, left.y);
-		if (right != null)
-			page.drawLine(x, y, right.x, right.y);
-		if (above != null)
-			page.drawLine(x, y, above.x, above.y);
+		if (showGridLines) {
+			page.setColor(lineColor);
+			if (left != null)
+				page.drawLine(x, y, left.x, left.y);
+			if (right != null)
+				page.drawLine(x, y, right.x, right.y);
+			if (above != null)
+				page.drawLine(x, y, above.x, above.y);
+		}
 	}
 
-	public void drawPieces(Graphics page, JPanel panel, int squareWidth) {
-		drawSquare(page, squareWidth);
-		if (player != 0)
-			drawCornKernal(page, panel, squareWidth);
+	public void drawPieces(Graphics page, JPanel panel) {
+		if (highlighted) {
+			Color sqColor = shapeColor;
+			int sqWidth = squareWidth;
+			shapeColor = shapeHighlightColor;
+			drawSquare(page);
+			if (showSquares) { // draw a small player color square
+				squareWidth = squareWidth * 7 / 10;
+				shapeColor = sqColor;
+				drawSquare(page);
+				squareWidth = sqWidth;
+			}
+			if (showCornKernals) { // show corn
+				drawCornKernal(page, panel);
+				shapeColor = sqColor;
+			}
+		} else {
+			if (showSquares)
+				drawSquare(page);
+			if (showCornKernals && playerNumber != 0)
+				drawCornKernal(page, panel);
+		}
 	}
 
-	private void drawCornKernal(Graphics page, JPanel panel, int squareWidth) {
+	public void clear() {
+		this.highlighted = false;
+		setPlayer(0);
+	}
+
+	private void drawCornKernal(Graphics page, JPanel panel) {
 		int cornX = x - squareWidth / 2;
 		int cornY = y - squareWidth / 2;
-		page.drawImage(cornKernal.getImage(), cornX, cornY,
-				cornX + squareWidth, cornY + squareWidth, 0, 0,
-				cornKernal.getIconWidth(), cornKernal.getIconHeight(), panel);
+		switch (playerNumber) {
+		case 1:
+			page.drawImage(player1Ccorn.getImage(), cornX, cornY, cornX
+					+ squareWidth, cornY + squareWidth, 0, 0,
+					player1Ccorn.getIconWidth(), player1Ccorn.getIconHeight(),
+					panel);
+			break;
+		case 2:
+			page.drawImage(player2Ccorn.getImage(), cornX, cornY, cornX
+					+ squareWidth, cornY + squareWidth, 0, 0,
+					player2Ccorn.getIconWidth(), player2Ccorn.getIconHeight(),
+					panel);
+			break;
+		}
 	}
 
-	private void drawSquare(Graphics page, int squareWidth) {
-		page.setColor(squareColor);
+	private void drawSquare(Graphics page) {
+		page.setColor(shapeColor);
 		page.fillRect(x - squareWidth / 2, y - squareWidth / 2, squareWidth,
 				squareWidth);
 	}
-
-	public void highlight(Graphics page, int squareWidth) {
-		int playerNum = player;
-		clearSquare(page, squareWidth);
-		squareColor = PitCons.squareHighlightColor;
-		drawSquare(page, squareWidth + 10);
-		setPlayer(playerNum);
-		drawPieces(page, null, squareWidth);
-		// drawSquare(page, width);
-	}
-
-	public void clearSquare(Graphics page, int width) {
-		setPlayer(0);
-		drawSquare(page, width);
-	}
-
 }
