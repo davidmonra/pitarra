@@ -85,7 +85,6 @@ public class PyramidPanel extends JPanel {
 
 	public void paintComponent(Graphics page) {
 		setGridCoords();
-		Utilities.drawBackdrop(page, backdrop, panelWidth, panelWidth, this);
 		drawPyramid(page, false);
 	}
 
@@ -197,11 +196,11 @@ public class PyramidPanel extends JPanel {
 	}
 
 	public void resetPyramid() {
-		repaint();
 		drawPyramid(getGraphics(), true);
 	}
 
-	private void drawPyramid(Graphics page, boolean clearGrid) {
+	public void drawPyramid(Graphics page, boolean clearGrid) {
+		Utilities.drawBackdrop(page, backdrop, panelWidth, panelWidth, this);
 		for (Vertex[] row : grid)
 			for (Vertex v : row)
 				v.drawConnectingLines(page);

@@ -375,7 +375,7 @@ public class GamePanel extends JPanel {
 		playMoveSound();
 		v.clear();
 		newLocation.setPlayer(currentPlayer);
-		newLocation.drawPieces(pyramid.getGraphics(), this);
+		pyramid.drawPyramid(pyramid.getGraphics(), false);
 		if (playerGot3inArow(currentPlayer, newLocation)) {
 			highlightPieces(otherPlayer);
 			if (lang) {
