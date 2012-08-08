@@ -17,6 +17,8 @@ JS- We're pretty much done. It would have been nice if we could have gotten svn 
 
 MAG- Testing the game and debugging
 
+PHP- testing testing testing testing testing testing
+
 *What should we stop doing?*
 
 L.- Forgetting what we agreed upon.
@@ -24,6 +26,8 @@ L.- Forgetting what we agreed upon.
 JL - adding more on top of what we have
 
 JS- ???
+
+PHP- nothing, we're good
 
 MAG-Nothing
 
@@ -36,3 +40,5 @@ JL - working steadily
 JS- Distributing tasks efficiently.
 
 MAG-More debugging
+
+PHP- everything, we're good.
