@@ -40,7 +40,7 @@ public final class Language {
         protected final static String menuNewTradSpa = "Nuevo Juego Tradicional";
         protected final static String menuSoundSpa = "Sonido";
         protected final static String menuExitSpa = "Salir";
-        protected final static String menuInstructionSpa = "Instrucción";
+        protected final static String menuInstructionSpa = "Instrucciónes";
         protected final static String menuResetGameSpa = "Reiniciar el juego";
         protected final static String menuAboutSpa = "Información acerca de el juego";
         protected final static String menuLanguageSpa = "Lenguaje";
