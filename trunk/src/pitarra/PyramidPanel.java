@@ -20,7 +20,6 @@ public class PyramidPanel extends JPanel {
 	private ImageIcon backdrop;
 	private Vertex[][] grid;
 	private GamePanel gPanel;
-	private boolean showGridLines;
 
 	public PyramidPanel(ImageIcon backdrop, GamePanel panel) {
 		setBackdrop(backdrop);
@@ -29,7 +28,6 @@ public class PyramidPanel extends JPanel {
 		// the faces of the pyramid are unfolded onto a 3 x 8 2D grid
 		this.grid = new Vertex[gridRows][gridCols];
 		this.squareWidth = PitCons.squareSize;
-		this.showGridLines = PitCons.showGridLines;
 		this.setPreferredSize(new Dimension(panelWidth, panelWidth));
 		this.setDoubleBuffered(true);
 
@@ -41,11 +39,12 @@ public class PyramidPanel extends JPanel {
 					isCornerVertex = true;
 
 				grid[row][col] = new Vertex(isCornerVertex,
-						PitCons.showSquares, PitCons.showCornKernals,
-						squareWidth, PitCons.pyramidLineColor,
-						PitCons.squareClearColor, PitCons.squareHighlightColor,
-						PitCons.player1Color, PitCons.player2Color,
-						PitCons.player1CornKernal, PitCons.player2CornKernal);
+						PitCons.showSquares, PitCons.showGridLines,
+						PitCons.showCornKernals, squareWidth,
+						PitCons.pyramidLineColor, PitCons.squareClearColor,
+						PitCons.squareHighlightColor, PitCons.player1Color,
+						PitCons.player2Color, PitCons.player1CornKernal,
+						PitCons.player2CornKernal);
 			}
 		}
 
@@ -203,11 +202,9 @@ public class PyramidPanel extends JPanel {
 	}
 
 	private void drawPyramid(Graphics page, boolean clearGrid) {
-		if (showGridLines) {
-			for (Vertex[] row : grid)
-				for (Vertex v : row)
-					v.drawConnectingLines(page);
-		}
+		for (Vertex[] row : grid)
+			for (Vertex v : row)
+				v.drawConnectingLines(page);
 		for (Vertex[] row : grid)
 			for (Vertex v : row) {
 				if (clearGrid)
