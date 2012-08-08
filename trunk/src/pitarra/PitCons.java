@@ -110,7 +110,7 @@ public final class PitCons {
 	protected final static Dimension screenSize = Toolkit.getDefaultToolkit()
 			.getScreenSize();
 	protected final static Dimension initialWindowSize = new Dimension(
-			(int) (screenSize.getWidth() * windowSizeScale),
+			(int) (screenSize.getHeight() * windowSizeScale * 4 / 3),
 			(int) (screenSize.getHeight() * windowSizeScale));
 	protected final static Point initialWindowPosition = new Point(
 			(int) (screenSize.getWidth() - initialWindowSize.getWidth()) / 2,
