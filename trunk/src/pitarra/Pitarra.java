@@ -3,22 +3,20 @@ package pitarra;
 import javax.swing.JFrame;
 
 public class Pitarra {
-        public static void main(String[] args) {
-        		Menu menu;
-        		GamePanel gPanel;
-        		gPanel = new GamePanel(PitCons.gameBackdrop);
-        		menu = new Menu(gPanel);
-                JFrame frame = new JFrame(PitCons.title);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setPreferredSize(PitCons.initialWindowSize);
+	private static JFrame frame = new JFrame(PitCons.title);
+	private static GamePanel gPanel = new GamePanel(PitCons.gameBackdrop);
+	private static Menu menu = new Menu(gPanel);
 
-                frame.getContentPane().add(gPanel);
-                frame.pack();
-                frame.setLocation(PitCons.initialWindowPosition);
-                frame.setJMenuBar(menu.getMenuBar());
+	public static void main(String[] args) {
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(PitCons.initialWindowSize);
 
-                frame.setResizable(true);
-                frame.setVisible(true);
-        }
+		frame.getContentPane().add(gPanel);
+		frame.pack();
+		frame.setLocation(PitCons.initialWindowPosition);
+		frame.setJMenuBar(menu.getMenuBar());
 
+		frame.setResizable(false);
+		frame.setVisible(true);
+	}
 }
