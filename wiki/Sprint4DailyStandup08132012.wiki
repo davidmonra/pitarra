@@ -12,10 +12,16 @@ Sprint 4 Daily Standup (08/13/2012)
 
 L.- Started User Manual.
 
+MAG- Edited the graphics to make them look better.
+
 *What will you do today?*
 
-L.- Client meeting on 8/13, continue writing User Manual. 
+L.- Client meeting on 8/13, continue writing User Manual.
+
+MAG- Prepare for the Client meeting 
 
 *Are there any impediments in your way?*
 
 L.- So much to do, so little time.
+
+MAG-AS of now nothing
