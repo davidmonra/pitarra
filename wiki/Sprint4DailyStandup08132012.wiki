@@ -14,14 +14,22 @@ L.- Started User Manual.
 
 MAG- Edited the graphics to make them look better.
 
+JS- Still working on cross panel drag-n-drop. Updated Pitarra class for thread safety per Java pages best practice.
+
+
 *What will you do today?*
 
 L.- Client meeting on 8/13, continue writing User Manual.
 
 MAG- Prepare for the Client meeting 
 
+JS- Continue working on cross panel drag-n-drop. The trick is to implement it as an overlay without making a bunch of changes to the existing code.
+
+
 *Are there any impediments in your way?*
 
 L.- So much to do, so little time.
 
 MAG-AS of now nothing
+
+JS- Got most of it working, but still trying to get the mouse event redispatching to work from glass pane to sub panels and vice/versa.
