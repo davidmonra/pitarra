@@ -18,6 +18,8 @@ JS- Still working on cross panel drag-n-drop. Updated Pitarra class for thread s
 
 PHP- i watched cowboy bebop all day, it was great. and test the language implementations
 
+JL - find bugs in change bgm options
+
 
 *What will you do today?*
 
@@ -29,6 +31,8 @@ JS- Continue working on cross panel drag-n-drop. The trick is to implement it as
 
 PHP- client meeting
 
+JL - fix bugs/inefficiencies in BGM changing components
+
 
 *Are there any impediments in your way?*
 
@@ -39,3 +43,5 @@ MAG-AS of now nothing
 JS- Got most of it working, but still trying to get the mouse event redispatching to work from glass pane to sub panels and vice/versa.
 
 PHP- nothing stands in my way to complete this project...NOTHING!! MUAHAHAHAHAHA
+
+JL - not really.
