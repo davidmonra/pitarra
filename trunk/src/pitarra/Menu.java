@@ -21,9 +21,10 @@ public class Menu extends JMenuBar {
         // action listener for traditional game option, beginner game option, exit,
         // sound, and instructions
         private ActionListener alTrad, alBeg, alEx, alSound, alInstruction,
-                        alAbout, alReset, alEng, alSpa, alMusic, alConcede;
+                        alAbout, alReset, alEng, alSpa, alMusic, alConcede, alchngBGM;
         private JCheckBoxMenuItem sound, NewTrad, NewBeg, langEng, langSpa, music;
         private ButtonGroup menuGroupGame, menuGroupLang;
+        private JButton chngBGM = new JButton("ChangeBGM");
         private boolean lang;
         private String aboutString, aboutStringSpa;
         
@@ -68,6 +69,7 @@ public class Menu extends JMenuBar {
                 this.alSpa = new ButtonActionSpanish();
                 this.alMusic = new ButtonActionMusic();
                 this.alConcede = new ButtonActionConcede();
+                this.alchngBGM = new ButtonActionchngBGM();
 
                 this.NewTrad.addActionListener(alTrad);
                 this.NewBeg.addActionListener(alBeg);
@@ -80,27 +82,28 @@ public class Menu extends JMenuBar {
                 this.langSpa.addActionListener(alSpa);
                 this.music.addActionListener(alMusic);
                 this.Concede.addActionListener(alConcede);
+                this.chngBGM.addActionListener(alchngBGM);
                 
                 this.lang = true;
                 
                 this.aboutString = "Pitarra Ver 0.2" + 
-                				"\n\n" + 
-                				"By:" + 
-                				"\n\n" + 
-                				"Lin D. \"The Master\" Wyeth\n" + 
-                				"Matthew \"The Artist\" Gamble\n" + 
-                				"Jesse \"The Sound Creator\" Leija\n" + 
-                				"Jerry \"The Guardian of Code\" Swank\n" + 
-                				"Priya \"The King of Kings\" Pramesi";
+                                                "\n\n" + 
+                                                "By:" + 
+                                                "\n\n" + 
+                                                "Lin D. \"The Master\" Wyeth\n" + 
+                                                "Matthew \"The Artist\" Gamble\n" + 
+                                                "Jesse \"The Sound Creator\" Leija\n" + 
+                                                "Jerry \"The Guardian of Code\" Swank\n" + 
+                                                "Priya \"The King of Kings\" Pramesi";
                 this.aboutStringSpa = "Pitarra Ver 0.2" + 
-								"\n\n" + 
-								"Por:" + 
-								"\n\n" + 
-								"Lin D. \"El Maestro\" Wyeth\n" + 
-								"Matthew \"El Artista\" Gamble\n" + 
-								"Jesse \"El Creador de Sonido\" Leija\n" + 
-								"Jerry \"El Guardián de Código\" Swank\n" + 
-								"Priya \"El Rey de Reyes\" Pramesi";
+                                                                "\n\n" + 
+                                                                "Por:" + 
+                                                                "\n\n" + 
+                                                                "Lin D. \"El Maestro\" Wyeth\n" + 
+                                                                "Matthew \"El Artista\" Gamble\n" + 
+                                                                "Jesse \"El Creador de Sonido\" Leija\n" + 
+                                                                "Jerry \"El Guardián de Código\" Swank\n" + 
+                                                                "Priya \"El Rey de Reyes\" Pramesi";
 
                 setMenu();
         }
@@ -132,6 +135,9 @@ public class Menu extends JMenuBar {
 
                 menuSound.add(sound);
                 menuSound.add(music);
+                
+                menuSound.add(chngBGM);
+                
                 sound.setSelected(true);
                 music.setSelected(true);
 
@@ -150,11 +156,11 @@ public class Menu extends JMenuBar {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
                         // PitCons.aboutText
-                	if(lang){
+                        if(lang){
                         gPanel.showMessage(aboutString, "About Pitarra");
-                	}else{
-                		gPanel.showMessage(aboutStringSpa, "Sobre Pitarra");
-                	}
+                        }else{
+                                gPanel.showMessage(aboutStringSpa, "Sobre Pitarra");
+                        }
                 }
 
         }
@@ -237,7 +243,7 @@ public class Menu extends JMenuBar {
             public void actionPerformed(ActionEvent e) {
                     gPanel.concedeGame();
             }
-		}
+                }
 
         private class ButtonActionEnglish implements ActionListener {
 
@@ -317,5 +323,21 @@ public class Menu extends JMenuBar {
                 }
 
         }
+        
+        private class ButtonActionchngBGM implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+            	
+            	if(PitCons.soundIndex == 2)
+            		PitCons.soundIndex=0;
+            	else 
+            		PitCons.soundIndex++;
+            	GamePanel.stopBGM();
+            	PitCons.backgroundMusic = PitCons.sounds[PitCons.soundIndex];
+                GamePanel.changeBGM(PitCons.backgroundMusic);
+                GamePanel.startBGM();
+            }
+    }
 
 }
