@@ -23,7 +23,7 @@ L.- Client meeting on 8/13, continue writing User Manual.
 
 MAG- Prepare for the Client meeting 
 
-JS- Continue working on cross panel drag-n-drop. The trick is to implement it as an overlay without making a bunch of changes to the existing code.
+JS- Continue working on cross panel drag-n-drop. The trick is to implement it as an overlay without making a bunch of changes to the existing code (no time).
 
 
 *Are there any impediments in your way?*
