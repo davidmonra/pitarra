@@ -67,7 +67,12 @@ public final class PitCons {
 	protected final static String takeSound = "Sound Files/recycle.wav";
 	protected final static String winSound = "Sound Files/tada.wav";
 	protected final static String highlightSound = "Sound Files/windows xp pop-up blocked.wav";
-	protected final static String backgroundMusic = "Sound Files/music-pitarra-1-short.wav";
+   
+	static int soundIndex = 0;
+  protected final static String sounds[] = { "Sound Files/music-pitarra-1-short.wav",
+            "Sound Files/bg3.wav",
+            "Sound Files/bg4.wav"};
+  protected static String backgroundMusic = sounds[soundIndex];
 
 	// image icons
 	// Change the .jpg image files in the icons folder to change the backdrops.
