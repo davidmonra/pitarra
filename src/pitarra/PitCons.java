@@ -61,12 +61,12 @@ public final class PitCons {
 			.createLineBorder(PitCons.genericBorderColor,
 					PitCons.borderThickness);
 
-	// sound constants
-	protected final static String dropSound = "Sound Files/pitarra-piecedrop-sound.wav";
-	protected final static String moveSound = "Sound Files/Windows XP Minimize.wav";
-	protected final static String takeSound = "Sound Files/recycle.wav";
-	protected final static String winSound = "Sound Files/tada.wav";
-	protected final static String highlightSound = "Sound Files/windows xp pop-up blocked.wav";
+        // sound constants
+        protected final static String dropSound = "Sound Files/pitarra-piecedrop-sound.wav";
+        protected final static String moveSound = "Sound Files/pitarra-move sound.wav";
+        protected final static String takeSound = "Sound Files/pitarra-take sound.wav";
+        protected final static String winSound = "Sound Files/pitarra-win sound.wav";
+        protected final static String highlightSound = "Sound Files/pitarra-highlight sound.wav";
    
 	static int soundIndex = 0;
   protected final static String sounds[] = { "Sound Files/music-pitarra-1-short.wav",
