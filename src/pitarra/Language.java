@@ -35,6 +35,7 @@ public final class Language {
         protected final static String numWinsTextEng = "Wins: ";
         protected final static String pieceCountTextPreficEng = "";
         protected final static String concedeStringEng = "Concede";
+        protected final static String ChangeMusicStringEng = "Change Music";
         
         protected final static String menuNewBegSpa = "Nuevo Juego Básico";
         protected final static String menuNewTradSpa = "Nuevo Juego Tradicional";
@@ -67,7 +68,8 @@ public final class Language {
         protected static final String winStringSpa = " es el ganador!";
         protected final static String numWinsTextSpa = "Victorias: ";
         protected final static String pieceCountTextPreficSpa = "Sobran ";
-        protected final static String concedeStringSpa = "Concedia";
+        protected final static String concedeStringSpa = "Conceder";
+        protected final static String ChangeMusicStringSpa = "Cambiar la Música";
         
         public static String playerString = playerStringEng;
         public static String playerStringAC = playerStringACEng;
