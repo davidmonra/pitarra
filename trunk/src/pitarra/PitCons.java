@@ -19,7 +19,7 @@ public final class PitCons {
 	// window constants
 	protected final static double windowSizeScale = 0.8; // % of screen width
 	protected final static double pyramidSizeScale = .5; // % of window width
-	protected final static double squareSizeScale = .06; // % of pyramid width
+	protected final static double squareSizeScale = .08; // % of pyramid width
 
 	// Fonts
 	protected final static int fontSize = (int) (35 * windowSizeScale);
