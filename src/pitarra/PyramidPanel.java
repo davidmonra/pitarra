@@ -29,7 +29,6 @@ public class PyramidPanel extends JPanel {
 		this.grid = new Vertex[gridRows][gridCols];
 		this.squareWidth = PitCons.squareSize;
 		this.setPreferredSize(new Dimension(panelWidth, panelWidth));
-		this.setDoubleBuffered(true);
 
 		for (int row = 0; row < gridRows; row++) {
 			for (int col = 0; col < gridCols; col++) {
@@ -38,13 +37,7 @@ public class PyramidPanel extends JPanel {
 				if (col % 2 == 0)
 					isCornerVertex = true;
 
-				grid[row][col] = new Vertex(isCornerVertex,
-						PitCons.showSquares, PitCons.showGridLines,
-						PitCons.showCornKernals, squareWidth,
-						PitCons.pyramidLineColor, PitCons.squareClearColor,
-						PitCons.squareHighlightColor, PitCons.player1Color,
-						PitCons.player2Color, PitCons.player1CornKernal,
-						PitCons.player2CornKernal);
+				grid[row][col] = new Vertex(isCornerVertex, squareWidth);
 			}
 		}
 
@@ -80,11 +73,12 @@ public class PyramidPanel extends JPanel {
 			}
 		}
 
+		setGridCoords();
 		addMouseListener(new PyramidListener());
 	}
 
 	public void paintComponent(Graphics page) {
-		setGridCoords();
+		// setGridCoords();
 		drawPyramid(page, false);
 	}
 
@@ -141,7 +135,7 @@ public class PyramidPanel extends JPanel {
 
 	// private classes
 	private void setGridCoords() {
-		this.squareWidth = (int) (panelWidth * PitCons.squareSizeScale);
+		// this.squareWidth = (int) (panelWidth * PitCons.squareSizeScale);
 		this.gridOffset = panelWidth / 10;
 		this.gridWidth = panelWidth - 2 * gridOffset;
 

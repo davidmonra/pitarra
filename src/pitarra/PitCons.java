@@ -61,40 +61,38 @@ public final class PitCons {
 			.createLineBorder(PitCons.genericBorderColor,
 					PitCons.borderThickness);
 
-        // sound constants
-        protected final static String dropSound = "Sound Files/pitarra-piecedrop-sound.wav";
-        protected final static String moveSound = "Sound Files/pitarra-move sound.wav";
-        protected final static String takeSound = "Sound Files/pitarra-take sound.wav";
-        protected final static String winSound = "Sound Files/pitarra-win sound.wav";
-        protected final static String highlightSound = "Sound Files/pitarra-highlight sound.wav";
-   
+	// sound constants
+	protected final static String dropSound = "Sound Files/pitarra-piecedrop-sound.wav";
+	protected final static String moveSound = "Sound Files/pitarra-move sound.wav";
+	protected final static String takeSound = "Sound Files/pitarra-take sound.wav";
+	protected final static String winSound = "Sound Files/pitarra-win sound.wav";
+	protected final static String highlightSound = "Sound Files/pitarra-highlight sound.wav";
+
 	static int soundIndex = 0;
-  protected final static String sounds[] = { "Sound Files/music-pitarra-1-short.wav",
-            "Sound Files/bg3.wav",
-            "Sound Files/bg4.wav"};
-  protected static String backgroundMusic = sounds[soundIndex];
+	protected final static String sounds[] = {
+			"Sound Files/music-pitarra-1-short.wav", "Sound Files/bg3.wav",
+			"Sound Files/bg4.wav" };
+	protected static String backgroundMusic = sounds[soundIndex];
 
 	// image icons
 	// Change the .jpg image files in the icons folder to change the backdrops.
 	// Make sure the file names are the same.
 	protected final static ImageIcon gameBackdrop = new ImageIcon(
 			"icons/GameBackdrop.jpg");
-	// protected final static ImageIcon pyramidBackdrop = new ImageIcon(
-	// "icons/PyramidBackdrop.jpg");
 	protected final static ImageIcon pyramidBackdrop = new ImageIcon(
 			"icons/PyramidBackdrop.jpg");
 	protected final static ImageIcon player1Backdrop = new ImageIcon(
 			"icons/Player1Backdrop.jpg");
 	protected final static ImageIcon player2Backdrop = new ImageIcon(
 			"icons/Player2Backdrop.jpg");
-	protected final static ImageIcon calendarBackdrop = new ImageIcon(
-			"icons/AztecCalendarBackdrop.JPG");
-	protected final static ImageIcon sacrificeBackdrop = new ImageIcon(
-			"icons/AztecSacrifice.jpg.JPG");
 	protected final static ImageIcon player1CornKernal = new ImageIcon(
-			"icons/player1corn.PNG");
+			"icons/player1corn.png");
 	protected final static ImageIcon player2CornKernal = new ImageIcon(
-			"icons/player2corn.PNG");
+			"icons/player2corn.png");
+	protected final static ImageIcon player1CornKernalHL = new ImageIcon(
+			"icons/player1cornHighlighted.png");
+	protected final static ImageIcon player2CornKernalHL = new ImageIcon(
+			"icons/player2cornHighlighted.png");
 
 	// File text constants
 	protected final static String advancedInstructions = Utilities
