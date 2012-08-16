@@ -24,7 +24,7 @@ public class Menu extends JMenuBar {
                         alAbout, alReset, alEng, alSpa, alMusic, alConcede, alchngBGM;
         private JCheckBoxMenuItem sound, NewTrad, NewBeg, langEng, langSpa, music;
         private ButtonGroup menuGroupGame, menuGroupLang;
-        private JButton chngBGM = new JButton("ChangeBGM");
+        private JMenuItem chngBGM;
         private boolean lang;
         private String aboutString, aboutStringSpa;
         
@@ -53,6 +53,7 @@ public class Menu extends JMenuBar {
                 this.langSpa = new JCheckBoxMenuItem(Language.menuSpanishEng);
                 this.music = new JCheckBoxMenuItem(Language.menuMusicEng);
                 this.Concede = new JMenuItem(Language.concedeStringEng);
+                this.chngBGM = new JMenuItem("ChangeBGM");
 
                 // menu grouping to make game mode mutually exclusive
                 this.menuGroupGame = new ButtonGroup();
@@ -328,13 +329,13 @@ public class Menu extends JMenuBar {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            	
-            	if(PitCons.soundIndex == 2)
-            		PitCons.soundIndex=0;
-            	else 
-            		PitCons.soundIndex++;
-            	GamePanel.stopBGM();
-            	PitCons.backgroundMusic = PitCons.sounds[PitCons.soundIndex];
+                
+                if(PitCons.soundIndex == 2)
+                        PitCons.soundIndex=0;
+                else 
+                        PitCons.soundIndex++;
+                GamePanel.stopBGM();
+                PitCons.backgroundMusic = PitCons.sounds[PitCons.soundIndex];
                 GamePanel.changeBGM(PitCons.backgroundMusic);
                 GamePanel.startBGM();
             }
