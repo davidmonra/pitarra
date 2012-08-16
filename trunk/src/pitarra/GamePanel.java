@@ -707,7 +707,7 @@ public class GamePanel extends JPanel {
 			message = player2.getPlayerName();
 			color = PitCons.player2Color;
 			p2Wins++;
-			player2.setNumWins(p1Wins);
+			player2.setNumWins(p2Wins);
 			break;
 		default:
 			throw new IllegalArgumentException("Player number must be 1 or 2.");
