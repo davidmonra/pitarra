@@ -45,11 +45,11 @@ public final class PitCons {
 
 	// color constants
 	protected final static Color pyramidLineColor = Color.black;
-	protected final static Color custonFontColor = new Color(255, 150, 75);
+	protected final static Color customFontColor = new Color(128, 0, 128);
 	protected final static Color notifyTextColor = Color.cyan;
 	// protected final static Color player1Color = custonFontColor;
 	protected final static Color player1Color = Color.yellow;
-	protected final static Color player2Color = Color.red;
+	protected final static Color player2Color = customFontColor;
 	protected final static Color genericBackColor = Color.orange;
 	protected final static Color squareClearColor = Color.gray;
 	protected final static Color squareHighlightColor = Color.cyan;
