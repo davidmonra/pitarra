@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
 	private PlayerPanel player1, player2;
 	private JLabel notifyText;
 	private Dimension windowSize;
-	private static SoundClipPlayer[] sounds;
+	private SoundClipPlayer[] sounds;
 	private boolean lang;
 	private Font notifyFont;
 
@@ -762,15 +762,18 @@ public class GamePanel extends JPanel {
 			sounds[5].stop();
 	}
 
-	public static void changeBGM(String chng) {
+	// public static void changeBGM(String chng) {
+	public void changeBGM(String chng) {
 		sounds[5] = new SoundClipPlayer(PitCons.backgroundMusic);
 	}
 
-	public static void stopBGM() {
+	// public static void stopBGM() {
+	public void stopBGM() {
 		sounds[5].stop();
 	}
 
-	public static void startBGM() {
+	// public static void startBGM() {
+	public void startBGM() {
 		sounds[5].playItForever();
 	}
 
