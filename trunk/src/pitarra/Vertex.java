@@ -2,9 +2,9 @@ package pitarra;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -18,34 +18,48 @@ public class Vertex extends Point {
 	private Color shapeColor, lineColor, shapeClearColor, shapeHighlightColor;
 	private Color player1Color, player2Color;
 	private Vertex left, right, above, below; // adjacent vertices
-	private ImageIcon player1Ccorn, player2Ccorn;
+	private Image player1CornImage, player2CornImage, player1CornImageHL,
+			player2CornImageHL;
+	private int player1CornWidth, player1CornHeight, player2CornWidth,
+			player2CornHeight, player1CornHLWidth, player1CornHLHeight,
+			player2CornHLWidth, player2CornHLHeight;
 
-	public Vertex(boolean isCornerVertex, boolean showSquares,
-			boolean showGridLines, boolean showCornKernals, int squareWidth,
-			Color lineColor, Color shapeClearColor, Color shapeHighlightColor,
-			Color player1Color, Color player2Color, ImageIcon player1Ccorn,
-			ImageIcon player2Ccorn) {
+	public Vertex(boolean isCornerVertex, int squareWidth) {
 		super();
 		this.available = true;
 		this.cornerVertex = isCornerVertex;
-		this.showSquares = showSquares;
-		this.showCornKernals = showCornKernals;
-		this.showGridLines = showGridLines;
+		this.showSquares = PitCons.showSquares;
+		this.showCornKernals = PitCons.showCornKernals;
+		this.showGridLines = PitCons.showGridLines;
 		this.highlighted = false;
 		this.playerNumber = 0;
 		this.squareWidth = squareWidth;
-		this.lineColor = lineColor;
-		this.shapeClearColor = shapeClearColor;
-		this.shapeHighlightColor = shapeHighlightColor;
-		this.shapeColor = shapeClearColor;
-		this.player1Color = player1Color;
-		this.player2Color = player2Color;
+		this.lineColor = PitCons.pyramidLineColor;
+		this.shapeClearColor = PitCons.squareClearColor;
+		this.shapeHighlightColor = PitCons.squareHighlightColor;
+		this.shapeColor = PitCons.squareClearColor;
+		this.player1Color = PitCons.player1Color;
+		this.player2Color = PitCons.player2Color;
 		this.left = null;
 		this.right = null;
 		this.above = null;
 		this.below = null;
-		this.player1Ccorn = player1Ccorn;
-		this.player2Ccorn = player2Ccorn;
+		// regular corn images
+		this.player1CornImage = PitCons.player1CornKernal.getImage();
+		this.player2CornImage = PitCons.player2CornKernal.getImage();
+		// regular corn dimensions
+		this.player1CornWidth = PitCons.player1CornKernal.getIconWidth();
+		this.player1CornHeight = PitCons.player1CornKernal.getIconHeight();
+		this.player2CornWidth = PitCons.player2CornKernal.getIconWidth();
+		this.player2CornHeight = PitCons.player2CornKernal.getIconHeight();
+		// highlighted corn images
+		this.player1CornImageHL = PitCons.player1CornKernalHL.getImage();
+		this.player2CornImageHL = PitCons.player2CornKernalHL.getImage();
+		// highlighted corn dimensions
+		this.player1CornHLWidth = PitCons.player1CornKernalHL.getIconWidth();
+		this.player1CornHLHeight = PitCons.player1CornKernalHL.getIconHeight();
+		this.player2CornHLWidth = PitCons.player2CornKernalHL.getIconWidth();
+		this.player2CornHLHeight = PitCons.player2CornKernalHL.getIconHeight();
 		setLocation(0, 0);
 	}
 
@@ -150,9 +164,9 @@ public class Vertex extends Point {
 		if (highlighted) {
 			Color sqColor = shapeColor;
 			int sqWidth = squareWidth;
-			shapeColor = shapeHighlightColor;
-			drawSquare(page);
 			if (showSquares) { // draw a small player color square
+				shapeColor = shapeHighlightColor;
+				drawSquare(page);
 				squareWidth = squareWidth * 7 / 10;
 				shapeColor = sqColor;
 				drawSquare(page);
@@ -176,22 +190,29 @@ public class Vertex extends Point {
 	}
 
 	private void drawCornKernal(Graphics page, JPanel panel) {
-		int cornX = x - squareWidth / 2;
-		int cornY = y - squareWidth / 2;
+		Image cornImage;
+		int width, height;
+
 		switch (playerNumber) {
 		case 1:
-			page.drawImage(player1Ccorn.getImage(), cornX, cornY, cornX
-					+ squareWidth, cornY + squareWidth, 0, 0,
-					player1Ccorn.getIconWidth(), player1Ccorn.getIconHeight(),
-					panel);
+			cornImage = highlighted ? player1CornImageHL : player1CornImage;
+			width = highlighted ? player1CornHLWidth : player1CornWidth;
+			height = highlighted ? player1CornHLHeight : player1CornHeight;
 			break;
 		case 2:
-			page.drawImage(player2Ccorn.getImage(), cornX, cornY, cornX
-					+ squareWidth, cornY + squareWidth, 0, 0,
-					player2Ccorn.getIconWidth(), player2Ccorn.getIconHeight(),
-					panel);
+			cornImage = highlighted ? player2CornImageHL : player2CornImage;
+			width = highlighted ? player2CornHLWidth : player2CornWidth;
+			height = highlighted ? player2CornHLHeight : player2CornHeight;
 			break;
+		default:
+			return;
 		}
+
+		int cornX = x - squareWidth / 2;
+		int cornY = y - squareWidth / 2;
+
+		page.drawImage(cornImage, cornX, cornY, cornX + squareWidth, cornY
+				+ squareWidth, 0, 0, width, height, panel);
 	}
 
 	private void drawSquare(Graphics page) {
